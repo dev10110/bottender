@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Menu {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Setup BotTender</h2>
+      <hr>
+<form action="/setup" method="POST">
+
+  <div class="form-group">
+    <label>Drink 1</label>
+    <input type="text" class="form-control" id="drink1" name="drink1" placeholder="{{ bot.drinksController.drinks[0] }}">
+  </div>
+
+  <div class="form-group">
+    <label>Drink 2</label>
+    <input type="text" class="form-control" id="drink2" name="drink2" placeholder="{{ bot.drinksController.drinks[1] }}">
+  </div>
+
+  <div class="form-group">
+    <label>Drink 3</label>
+    <input type="text" class="form-control" id="drink3" name="drink3" placeholder="{{ bot.drinksController.drinks[2] }}">
+  </div>
+
+  <div class="form-group">
+    <label>Drink 4</label>
+    <input type="text" class="form-control" id="drink4" name="drink4" placeholder="{{ bot.drinksController.drinks[3] }}">
+  </div>
+
+<button type="submit" class="btn btn-primary">Sign up</button>
+</form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

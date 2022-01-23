@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BotTender</title>
+</head>
+
+<body>
+
+    <main class="container">
+ <nav>
+  <ul>
+    <li><a href="{{ url_for('main_page') }}"> <h1>Dev's Secret Project</h1> </a></li>
+  </ul>
+  <ul>
+    <li><a href="{{ url_for('custom_page') }}">Custom</a></li>
+    <li><a href="{{ url_for('setup_page') }}">Setup</a></li>
+  </ul>
+</nav>
+
+    <div id="content"> {% block content %}{% endblock %}</div>
+  
+</main>
+</body>
+</html>

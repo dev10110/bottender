@@ -1,32 +1,6 @@
 import RPi.GPIO as GPIO
-
-
-
-class Motor:
-
-    def __init__(self, pinA, pinB):
-        self.pinA = pinA
-        self.pinB = pinB
-
-        GPIO.setup(pinA, GPIO.OUT)
-        GPIO.setup(pinB, GPIO.OUT)
-
-        GPIO.output(pinA, GPIO.LOW)
-        GPIO.output(pinB, GPIO.LOW)
-
-    def stop(self):
-
-        GPIO.output(self.pinA, GPIO.LOW)
-        GPIO.output(self.pinB, GPIO.LOW)
-
-    def forward(self):
-        GPIO.output(self.pinA, GPIO.HIGH)
-        GPIO.output(self.pinB, GPIO.LOW)
-
-    def reverse(self):
-        GPIO.output(self.pinA, GPIO.LOW)
-        GPIO.output(self.pinB, GPIO.HIGH)      
-
+from motor_controller import MotorController
+from drinks_controller import DrinksController
 
 class BotTender:
 
@@ -34,8 +8,15 @@ class BotTender:
         GPIO.setmode(GPIO.BCM)
         
         self.motors = [
-            Motor(23, 24) # define each motor here
-        ]    
+            MotorController(23, 24) # define each motor here
+        ]
+
+        self.drinksController = DrinksController()    
+
+
+    def set_drinks(self, drinks):
+        self.drinksController.set_drinks(drinks)
+
  
     def forward(self, motor):
         if motor > len(self.motors)-1:
