@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from flask import Flask, render_template, request, redirect
+import time
 
 from bottender import BotTender
 
@@ -13,12 +14,12 @@ bot = BotTender()
 def main_page():
     # this is where the drinks will live
     # and s
-    return render_template("main.html")
+    return render_template("main.html", bot=bot)
 
 @app.route("/custom")
 def custom_page():
     # this is for custom drinks
-    return render_template("custom.html")
+    return render_template("custom.html", bot=bot)
 
 
 @app.route("/setup", methods=["GET", "POST"])
@@ -27,13 +28,13 @@ def setup_page():
         req = request.form
         print(req)
 
-        
+               
         drinks = []
  
+        drinks.append(req["drink0"])
         drinks.append(req["drink1"])
         drinks.append(req["drink2"])
-        drinks.append(req["drink3"])
-        drinks.append(req["drink4"])        
+        drinks.append(req["drink3"])        
         bot.set_drinks(drinks)
  
         return redirect(request.url)
@@ -54,8 +55,9 @@ def action(motor, action):
         bot.reverse(motor)
     if action == "stop":
         bot.stop(motor)
-    
-    return custom_page()
+        
+    time.sleep(0.1)    
+    return redirect("/custom")
 
 
 

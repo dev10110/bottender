@@ -4,5 +4,18 @@
 
 {% block content %}
 
+    {% for d in bot.all_drinks() %} 
+    <article>
+        <h3>{{ d.name }}</h3>
+        <ul>
+        {% for i in d.ingredients.keys() %}
+            <li> {{ i }} : {{d.ingredients[i]}} oz </li>
+        {% endfor %}
+        </ul>
+    <footer>
+    <a href="#" role="button">Pour</a>
+    </footer>
+    </article>
+    {% endfor %}
 
 {% endblock %}

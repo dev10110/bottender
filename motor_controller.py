@@ -1,6 +1,6 @@
 
 import RPi.GPIO as GPIO
-from time import sleep, now
+import time
 
 
 class MotorController:
@@ -15,7 +15,7 @@ class MotorController:
         GPIO.output(pinA, GPIO.LOW)
         GPIO.output(pinB, GPIO.LOW)
 
-        self.start_timer = time.now()
+        self.start_timer = time.time()
         self.calibration = None
 
     def stop(self):
@@ -36,6 +36,3 @@ class MotorController:
         self.forward()
         time.sleep(ms*0.001)
         self.stop()
-
-    def calibrate_start(self, ms):
-        self.

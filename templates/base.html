@@ -9,18 +9,21 @@
 <body>
 
     <main class="container">
- <nav>
-  <ul>
-    <li><a href="{{ url_for('main_page') }}"> <h1>Dev's Secret Project</h1> </a></li>
-  </ul>
-  <ul>
-    <li><a href="{{ url_for('custom_page') }}">Custom</a></li>
-    <li><a href="{{ url_for('setup_page') }}">Setup</a></li>
-  </ul>
-</nav>
+
+    <a href="{{ url_for('main_page') }}"> <h1>BotTender [mk1]</h1> </a>
 
     <div id="content"> {% block content %}{% endblock %}</div>
   
+ <nav>
+  <ul>
+  </ul>
+  <ul>
+    <li><a href="{{ url_for('main_page') }}">Menu</a></li>
+    <li><a href="{{ url_for('custom_page') }}">Custom</a></li>
+    <li><a href="{{ url_for('setup_page') }}">Setup</a></li>
+    <li>Made by Dev</li>
+  </ul>
+</nav>
 </main>
 </body>
 </html>

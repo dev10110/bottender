@@ -4,8 +4,14 @@
 
 {% block content %}
 
-	   <a href="/0/forward" class="btn btn-block btn-lg btn-primary" role="button">FORWARD</a>
-	   <a href="/0/stop" class="btn btn-block btn-lg btn-primary" role="button">STOP</a>
-	   <a href="/0/reverse" class="btn btn-block btn-lg btn-primary" role="button">REVERSE</a>
-
+	{% for i in  range(bot.num_motors()) %}
+	<section class="container">
+		<h2> Motor {{i + 1}} [{{ bot.get_loaded_drink(i) }}] </h2> 
+		<p>
+		<a href="/{{ i }}/forward" class="btn btn-block btn-lg btn-primary" role="button">FORWARD</a>
+	   <a href="/{{ i }}/stop" class="btn btn-block btn-lg btn-primary" role="button">STOP</a>
+	   <a href="/{{ i }}/reverse" class="btn btn-block btn-lg btn-primary" role="button">REVERSE</a>
+		</p>
+	</section>
+	{% endfor %}
 {% endblock %}

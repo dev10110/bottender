@@ -11,28 +11,26 @@
       <hr>
 <form action="/setup" method="POST">
 
+    {% for i in range(bot.num_motors()) %}
   <div class="form-group">
-    <label>Drink 1</label>
-    <input type="text" class="form-control" id="drink1" name="drink1" placeholder="{{ bot.drinksController.drinks[0] }}">
-  </div>
+    <label for="drink{{i}}">Drink {{i+1}}</label>
+    <select id="drink{{i}}" name="drink{{i}}" required>
+        {% for j in range(bot.all_ingredients() | length) %}
+        {% set drink = bot.all_ingredients()[j] %}
+        {% set selected_drink = bot.get_loaded_drink(i) %}
+        {% set selected = selected_drink == drink %}
+        <option value="{{ bot.all_ingredients()[j] }}" 
+            {% if selected %} selected {% endif %} 
+         >{{ bot.all_ingredients()[j] }}
+        </option>
+        {% endfor %}
+    </select>
+   </div>
+    {% endfor %}
 
-  <div class="form-group">
-    <label>Drink 2</label>
-    <input type="text" class="form-control" id="drink2" name="drink2" placeholder="{{ bot.drinksController.drinks[1] }}">
-  </div>
 
-  <div class="form-group">
-    <label>Drink 3</label>
-    <input type="text" class="form-control" id="drink3" name="drink3" placeholder="{{ bot.drinksController.drinks[2] }}">
-  </div>
-
-  <div class="form-group">
-    <label>Drink 4</label>
-    <input type="text" class="form-control" id="drink4" name="drink4" placeholder="{{ bot.drinksController.drinks[3] }}">
-  </div>
-
-<button type="submit" class="btn btn-primary">Sign up</button>
-</form>
+    <button type="submit" class="btn btn-primary">Save</button>
+    </form>
     </div>
   </div>
 </div>

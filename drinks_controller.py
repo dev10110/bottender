@@ -1,11 +1,14 @@
 
 
+from recipes import MENU
+
+
 class DrinksController:
 
     def __init__(self):
 
-        self.drinks = ["Drink 1", "Drink 2", "Drink 3", "Drink 4"]
-
+        self.drinks = ["Vodka", "None", "None", "None"]
+        self.menu = MENU
         return
 
     def set_drinks(self, drinks):
@@ -17,3 +20,19 @@ class DrinksController:
             self.drinks[i] = drinks[i]
         
         return True
+
+    def get_all_ingredients(self):
+        
+
+        ing = ["None"]
+
+        for d in self.menu:
+            ing.extend(d.ingredients.keys())
+
+        ing = sorted(list(set(ing)))
+        
+        
+        return ing
+
+
+
