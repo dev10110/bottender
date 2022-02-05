@@ -1,11 +1,12 @@
 import RPi.GPIO as GPIO
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 import time
 
 from bottender import BotTender
 
 
 app = Flask(__name__)
+app.secret_key = "wow so secure"
 bot = BotTender()
 
 
@@ -62,5 +63,10 @@ def action(motor, action):
 
 
 
-  
-
+@app.route("/pour/<drink>")
+def pour(drink):
+    print("DRINK REQUESTED: " + drink)
+    poured = bot.pour(drink)
+    flash("Done! I poured: " + poured)
+    return redirect("/")
+    

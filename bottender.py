@@ -18,6 +18,37 @@ class BotTender:
         ]
 
         self.drinksController = DrinksController()    
+
+    def pour(self, drink_id):
+        d = self.find_drink(drink_id)
+        poured = ""
+
+        for ing in d.ingredients.keys():
+            print(" ** checking " + ing)
+            if self.is_available(ing):
+                mot = self.which_motor(ing)
+                print(" ** "+ ing + " is at motor " + str(mot) + ". Dispensing")
+                duration_ms= 1000
+                self.dispense(mot, duration_ms)
+                print(" ** Done dispensing")
+                poured = poured + ing + " "
+            else:
+                print(" ** " + ing + " is NOT available")
+        return poured
+    
+    def is_available(self, ing):
+        return ing in self.drinksController.drinks
+
+    def which_motor(self, ing):
+        return self.drinksController.drinks.index(ing)
+
+
+
+    def find_drink(self, drink_id):
+        for d in self.all_drinks():
+            if d.id == drink_id:
+                return d
+
     
     def all_drinks(self):
         return self.drinksController.menu
