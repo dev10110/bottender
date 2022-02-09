@@ -24,3 +24,18 @@ check the pin mappings are correct (defined in the constructor for bottender.py)
 `export FLASK_ENV=development`
 
 `flask run --host=0.0.0.0`
+
+## running it without ip address
+in `/etc/hosts`
+add 
+```
+127.0.0.1 bot.tender localhost
+```
+which will redirect any requests (from the current computer) from bot.tender to localhost
+
+then launch flask with port 80:
+```
+flask run --host=0.0.0.0 --port=80
+```
+
+and now navigate to `bot.tender/`

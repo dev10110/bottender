@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, flash
 import time
 
-from bottender import BotTender
+from bottender_dummy import BotTender
 
 
 app = Flask(__name__)
 app.secret_key = "wow so secure"
+# app.config['SERVER_NAME'] = 'bot.tender:5000'
 bot = BotTender()
 
 
@@ -13,7 +14,6 @@ bot = BotTender()
 @app.route("/")
 def main_page():
     # this is where the drinks will live
-    # and s
     return render_template("main.html", bot=bot)
 
 @app.route("/custom")
