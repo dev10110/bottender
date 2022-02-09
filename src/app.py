@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 from flask import Flask, render_template, request, redirect, flash
 import time
 
