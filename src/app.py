@@ -35,8 +35,13 @@ def setup_page():
         drinks.append(req["drink1"])
         drinks.append(req["drink2"])
         drinks.append(req["drink3"])        
-        bot.set_drinks(drinks)
- 
+        ret = bot.set_drinks(drinks)
+
+        if ret == True:
+            flash("Saved!")
+        else:
+            flash("ERROR Saving!")
+
         return redirect(request.url)
     
     return render_template("setup.html", bot=bot)

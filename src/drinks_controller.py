@@ -34,5 +34,18 @@ class DrinksController:
         
         return ing
 
+    def get_ingredient_availability(self, drink):
+        count = 0
+        for ing in drink.ingredients:
+            if ing in self.drinks:
+                count +=1
+
+        return count/len(drink.ingredients)
+
+
+    def get_menu(self):
+
+        # return sorted(self.menu, key=lambda d: self.get_ingredient_availability(d), reverse=True)
+        return sorted(self.menu, key=lambda d: d.name, reverse=False)
 
 

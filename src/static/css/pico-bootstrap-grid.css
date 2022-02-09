@@ -5,10 +5,12 @@
 /**
  * Theme: default
  */
+
 :root {
-  --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+  /* --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
     "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Segoe UI Symbol", "Noto Color Emoji"; */
+  --font-family: "Montserrat";
   --line-height: 1.5;
   --font-weight: 400;
   --font-size: 16px;
@@ -136,6 +138,7 @@ h4,
 h5,
 h6 {
   --font-weight: 700;
+  --font-family: "Syncopate";
 }
 
 h1 {
@@ -3627,3 +3630,17 @@ textarea,
 }
 
 /*# sourceMappingURL=pico-bootstrap-grid.css.map */
+
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+h1

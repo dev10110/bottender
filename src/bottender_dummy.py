@@ -49,10 +49,10 @@ class BotTender:
 
     
     def all_drinks(self):
-        return self.drinksController.menu
+        return self.drinksController.get_menu()
 
     def set_drinks(self, drinks):
-        self.drinksController.set_drinks(drinks)
+        return self.drinksController.set_drinks(drinks)
 
     def get_loaded_drink(self, motor_ind):
         return self.drinksController.drinks[motor_ind]

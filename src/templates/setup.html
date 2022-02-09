@@ -13,7 +13,7 @@
 
     {% for i in range(bot.num_motors()) %}
   <div class="form-group">
-    <label for="drink{{i}}">Drink {{i+1}}</label>
+    <label for="drink{{i}}">Drink {{i+1}} - [ {{ bot.get_loaded_drink(i) }} ]</label>
     <select id="drink{{i}}" name="drink{{i}}" required>
         {% for j in range(bot.all_ingredients() | length) %}
         {% set drink = bot.all_ingredients()[j] %}
