@@ -9,15 +9,28 @@ class BotTender:
 
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
+
+        self.switch = 17
+        GPIO.setup(17, GPIO.IN)
+
+        self.messages = []
         
-        self.motors = [
-            MotorController(14, 15), # define each motor here
-            MotorController(23, 24),
-            MotorController(25, 8),
-            MotorController(7, 1)
+        self.motors = [ # define each motor here
+            MotorController(21, 20), #M1 
+            MotorController(16, 12), #M2
+            MotorController(26, 19), #M3
+            MotorController(11, 13), #M4
+            MotorController(18, 23), #M5 
+            MotorController(24, 25), #M6
+            MotorController(22, 27), #M7
+            MotorController(10, 9) #M8
         ]
 
         self.drinksController = DrinksController()    
+
+
+    def check_switch(self):
+        return GPIO.input(self.switch) == 1
 
     def pour(self, drink_id):
         d = self.find_drink(drink_id)
@@ -28,7 +41,7 @@ class BotTender:
             if self.is_available(ing):
                 mot = self.which_motor(ing)
                 print(" ** "+ ing + " is at motor " + str(mot) + ". Dispensing")
-                duration_ms= 1000
+                duration_ms= 3000 * d.ingredients[ing]
                 self.dispense(mot, duration_ms)
                 print(" ** Done dispensing")
                 poured = poured + ing + " "
@@ -66,9 +79,15 @@ class BotTender:
         return len(self.motors)
         
     def validate(self, motor):
+
+        if not self.check_switch():
+            print("SWITCH IS LOW")
+            return False
+
         if motor > len(self.motors)-1:
             print("WARNING: COMMANDING UNINITIALISED MOTOR")
             return False
+
         return True
 
     def dispense(self, motor, ms):

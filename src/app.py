@@ -32,10 +32,9 @@ def setup_page():
                
         drinks = []
  
-        drinks.append(req["drink0"])
-        drinks.append(req["drink1"])
-        drinks.append(req["drink2"])
-        drinks.append(req["drink3"])        
+        for i in range(bot.num_motors()):
+            drinks.append(req[f"drink{i}"])
+        
         bot.set_drinks(drinks)
  
         return redirect(request.url)

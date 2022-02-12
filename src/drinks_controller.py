@@ -7,12 +7,21 @@ class DrinksController:
 
     def __init__(self):
 
-        self.drinks = ["Vodka", "None", "None", "None"]
+        self.drinks = ["Vodka", 
+                "None", 
+                "None",
+                "None",
+                "None",
+                "None",
+                "None",
+                "None"]
         self.menu = MENU
         return
 
     def set_drinks(self, drinks):
         if len(drinks) != len(self.drinks):
+            print(len(drinks))
+            print(len(self.drinks))
             print("NOT CORRECT NUMBER OF DRINKS - REJECTING SETUP")
             return False
 

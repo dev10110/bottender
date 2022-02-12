@@ -9,7 +9,12 @@
         <h3>{{ d.name }}</h3>
         <ul>
         {% for i in d.ingredients.keys() %}
-            <li> {{ i }} : {{d.ingredients[i]}} oz </li>
+            {% set avail =  bot.is_available(i) %}
+            
+            <li> {% if avail %} <ins> {% endif %}
+                {{ i }} : {{d.ingredients[i]}} oz
+                 {% if avail %} </ins> {% endif %}
+            </li>
         {% endfor %}
         </ul>
     <footer>
