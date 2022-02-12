@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+import time
 GPIO.setwarnings(False)
 
 from motor_controller import MotorController
@@ -62,6 +62,44 @@ class BotTender:
                 poured = poured + ing + " "
             else:
                 print(" ** " + ing + " is NOT available")
+        return poured
+
+    def pour_parallel(self, drink_id):
+        d = self.find_drink(drink_id)
+        poured = ""
+        
+        plan = []
+        for ing in d.ingredients.keys():
+            if self.is_available(ing):
+                mot = self.which_motor(ing)
+                oz = d.ingredients[ing]
+                t = self.POUR_CONSTS[mot] * oz
+                plan.append([mot, t, False])
+                poured = poured + ing + " "
+        
+        maxT = max([p[1] for p in plan])
+
+        print(plan)
+
+        start = time.time()
+        # start the motors
+        for m in [p[0] for p in plan]:
+            self.motors[m].forward()
+            print(f"Starting motor {m}")
+        
+        done = False
+        while not done:
+            t = (time.time() - start)*1000
+            for i in range(len(plan)):
+                if not plan[i][2]: # if not done
+                    if t > plan[i][1]: # now is done
+                        self.motors[plan[i][0]].stop()
+                        print(f"*******************Stopping motor {plan[i][0]}")
+                        plan[i][2] = True
+            done = all([p[2] for p in plan])
+            # time.sleep(0.05)
+            print(t)
+
         return poured
     
     def is_available(self, ing):

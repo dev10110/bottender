@@ -63,7 +63,7 @@ def action(motor, action):
         bot.stop(motor)
     if action == "dispense":
         bot.dispense_oz(motor, 0.5)
-        
+
         
     # time.sleep(0.1)    
     return redirect("/custom")
@@ -75,7 +75,7 @@ def action(motor, action):
 def pour(drink):
     
     print("DRINK REQUESTED: " + drink)
-    poured = bot.pour(drink)
+    poured = bot.pour_parallel(drink)
     flash("Done! I poured: " + poured)
     return redirect("/")
     
