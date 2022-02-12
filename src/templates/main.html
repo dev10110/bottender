@@ -2,9 +2,12 @@
 {% block title %} Menu {% endblock %}
 
 
-{% block content %}
 
+{% block content %}
+<div class="container">
+    <div class="row">
     {% for d in bot.all_drinks() %} 
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">  
     <article>
         <h3>{{ d.name }}</h3>
         <ul>
@@ -21,6 +24,9 @@
     <a href="/pour/{{d.id}}" role="button">Pour</a>
     </footer>
     </article>
+    </div>
     {% endfor %}
+</div>
+</div>
 
 {% endblock %}

@@ -1,12 +1,12 @@
-import RPi.GPIO as GPIO
 from flask import Flask, render_template, request, redirect, flash
 import time
 
-from bottender import BotTender
+from bottender_dummy import BotTender
 
 
 app = Flask(__name__)
 app.secret_key = "wow so secure"
+# app.config['SERVER_NAME'] = 'bot.tender:5000'
 bot = BotTender()
 
 
@@ -14,7 +14,6 @@ bot = BotTender()
 @app.route("/")
 def main_page():
     # this is where the drinks will live
-    # and s
     return render_template("main.html", bot=bot)
 
 @app.route("/custom")
@@ -28,15 +27,19 @@ def setup_page():
     if request.method == "POST":
         req = request.form
         print(req)
-
-               
+        
         drinks = []
- 
+
         for i in range(bot.num_motors()):
             drinks.append(req[f"drink{i}"])
-        
-        bot.set_drinks(drinks)
- 
+
+        ret = bot.set_drinks(drinks)
+
+        if ret == True:
+            flash("Saved!")
+        else:
+            flash("ERROR Saving!")
+
         return redirect(request.url)
     
     return render_template("setup.html", bot=bot)
