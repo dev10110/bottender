@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash
 import time
 
-from bottender_dummy import BotTender
+from bottender import BotTender
 
 
 app = Flask(__name__)
@@ -13,21 +13,24 @@ bot = BotTender()
 
 @app.route("/")
 def main_page():
+    get_messages(bot)
     # this is where the drinks will live
     return render_template("main.html", bot=bot)
 
 @app.route("/custom")
 def custom_page():
+    get_messages(bot)
     # this is for custom drinks
     return render_template("custom.html", bot=bot)
 
 
 @app.route("/setup", methods=["GET", "POST"])
 def setup_page():
+    get_messages(bot)
     if request.method == "POST":
         req = request.form
         print(req)
-        
+
         drinks = []
 
         for i in range(bot.num_motors()):
@@ -58,8 +61,11 @@ def action(motor, action):
         bot.reverse(motor)
     if action == "stop":
         bot.stop(motor)
+    if action == "dispense":
+        bot.dispense_oz(motor, 0.5)
         
-    time.sleep(0.1)    
+        
+    # time.sleep(0.1)    
     return redirect("/custom")
 
 
@@ -67,8 +73,13 @@ def action(motor, action):
 
 @app.route("/pour/<drink>")
 def pour(drink):
+    
     print("DRINK REQUESTED: " + drink)
     poured = bot.pour(drink)
     flash("Done! I poured: " + poured)
     return redirect("/")
     
+def get_messages(bot):
+    for m in bot.messages:
+        flash(m)
+

@@ -8,6 +8,20 @@ from drinks_controller import DrinksController
 class BotTender:
 
     def __init__(self):
+
+        dispense_per_five_sec = [
+            0.71,
+            0.81,
+            0.72,
+            0.78,
+            0.60,
+            0.62,
+            0.63,
+            0.58
+        ]
+        
+        self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec];
+        
         GPIO.setmode(GPIO.BCM)
 
         self.switch = 17
@@ -20,13 +34,15 @@ class BotTender:
             MotorController(16, 12), #M2
             MotorController(26, 19), #M3
             MotorController(11, 13), #M4
-            MotorController(18, 23), #M5 
+            MotorController(23, 18), #M5 
             MotorController(24, 25), #M6
             MotorController(22, 27), #M7
             MotorController(10, 9) #M8
         ]
 
         self.drinksController = DrinksController()    
+
+        
 
 
     def check_switch(self):
@@ -41,8 +57,7 @@ class BotTender:
             if self.is_available(ing):
                 mot = self.which_motor(ing)
                 print(" ** "+ ing + " is at motor " + str(mot) + ". Dispensing")
-                duration_ms= 3000 * d.ingredients[ing]
-                self.dispense(mot, duration_ms)
+                self.dispense_oz(mot, d.ingredients[ing])
                 print(" ** Done dispensing")
                 poured = poured + ing + " "
             else:
@@ -67,7 +82,7 @@ class BotTender:
         return self.drinksController.get_menu()
 
     def set_drinks(self, drinks):
-        self.drinksController.set_drinks(drinks)
+        return self.drinksController.set_drinks(drinks)
 
     def get_loaded_drink(self, motor_ind):
         return self.drinksController.drinks[motor_ind]
@@ -94,6 +109,11 @@ class BotTender:
         if not self.validate(motor):
             return
         self.motors[motor].dispense(ms)
+
+    def dispense_oz(self, motor, oz):
+        if not self.validate(motor):
+            return
+        self.motors[motor].dispense(self.POUR_CONSTS[motor] * oz)
  
     def forward(self, motor):
         if not self.validate(motor):
