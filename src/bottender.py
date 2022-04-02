@@ -1,6 +1,17 @@
-import RPi.GPIO as GPIO
+import os
+import uuid
+import random
+
+dummy_mode = False
+if os.environ.get("DUMMY_MODE") == "TRUE":
+    print("SETTING DUMMY MODE TRUE")
+    dummy_mode=True
+    
+if not dummy_mode:
+    import RPi.GPIO as GPIO
+    GPIO.setwarnings(False)
 import time
-GPIO.setwarnings(False)
+
 
 from motor_controller import MotorController
 from drinks_controller import DrinksController
@@ -19,13 +30,18 @@ class BotTender:
             0.63,
             0.58
         ]
+
+        ## TEMPORARY!
+        dispense_per_five_sec = [s*10 for s in dispense_per_five_sec]
         
         self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec];
         
-        GPIO.setmode(GPIO.BCM)
+        if not dummy_mode:
+            GPIO.setmode(GPIO.BCM)
 
         self.switch = 17
-        GPIO.setup(17, GPIO.IN)
+        if not dummy_mode:
+            GPIO.setup(self.switch, GPIO.IN)
 
         self.messages = []
         
@@ -42,10 +58,59 @@ class BotTender:
 
         self.drinksController = DrinksController()    
 
+        self.drink_queue = []
+        self.drink_history_uuid = []
+        self.drink_history_name = []
+
+
+    def generate_uuid(self):
         
+        return uuid.uuid4().hex
+
+    
+    def random_drink_id(self):
+        menu = self.drinksController.get_menu()
+        choice = random.choice(menu)
+        print("THE CHOICE IS ", choice)
+        return choice
+
+    def enque(self, drink_id, uuid):
+
+        if uuid in self.drink_history_uuid:
+            print("WARN: drink uuid was already enqueued before. SKIPPING. ")
+            return
+
+        # NEW DRINK, so append to drink queue and history
+        self.drink_queue.append((drink_id, uuid))
+        self.drink_history_name.append(drink_id)
+        self.drink_history_uuid.append(uuid)
+
+    """ 
+    remove first element from the drink queue
+    """
+    def deque(self, uuid):
+        if len(self.drink_queue) >= 0:
+            self.drink_queue.pop(0)
+
+        return
+
+
+    def get_next_drink_name(self):
+        if len(self.drink_queue) >= 1:
+
+            return self.find_drink(self.drink_queue[0][0]).name
+        return "[Nothing Queued]"
+
+    def get_next_drink_uuid(self):
+        if len(self.drink_queue) >= 1:
+            return self.drink_queue[0][1]
+        else:
+            return None
 
 
     def check_switch(self):
+        if dummy_mode:
+            return True
         return GPIO.input(self.switch) == 1
 
     def pour(self, drink_id):
@@ -63,6 +128,11 @@ class BotTender:
             else:
                 print(" ** " + ing + " is NOT available")
         return poured
+
+    def pour_parallel_next(self):
+        drink_id, uuid_id = self.drink_queue.pop(0) # also removes it from the list
+        self.pour_parallel(drink_id)
+
 
     def pour_parallel(self, drink_id):
         d = self.find_drink(drink_id)
@@ -154,17 +224,36 @@ class BotTender:
         self.motors[motor].dispense(self.POUR_CONSTS[motor] * oz)
  
     def forward(self, motor):
+
+        if motor == -1:
+            for motor in self.motors:
+                motor.forward()
+            return
+
         if not self.validate(motor):
             return
         self.motors[motor].forward()
 
 
     def reverse(self, motor):
+
+        if motor == -1:
+            for motor in self.motors:
+                motor.reverse()
+            return
+
         if not self.validate(motor):
             return
         self.motors[motor].reverse()
 
     def stop(self, motor):
+
+        if motor == -1:
+            for motor in self.motors:
+                motor.stop()
+            return
+
+
         if not self.validate(motor):
             return
         self.motors[motor].stop()

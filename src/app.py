@@ -1,7 +1,14 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, jsonify, make_response
 import time
+import os
 
-from bottender import BotTender
+# DEBUG_MODE = TRUE
+
+os.environ['DUMMY_MODE'] = 'TRUE'
+
+
+print(os.environ.get('DUMMY_MODE'))
+from bottender import BotTender    
 
 
 app = Flask(__name__)
@@ -9,13 +16,19 @@ app.secret_key = "wow so secure"
 # app.config['SERVER_NAME'] = 'bot.tender:5000'
 bot = BotTender()
 
+@app.route("/gif_test")
+def gif_test():
+    return render_template("gif.html")
+
 
 
 @app.route("/")
 def main_page():
     get_messages(bot)
     # this is where the drinks will live
-    return render_template("main.html", bot=bot)
+    uuid = bot.generate_uuid()
+    print("NEW UUID: " + uuid)
+    return render_template("main.html", bot=bot, uuid=uuid)
 
 @app.route("/custom")
 def custom_page():
@@ -71,15 +84,79 @@ def action(motor, action):
 
 
 
-@app.route("/pour/<drink>")
-def pour(drink):
+@app.route("/pour/<drink>/<uuid>")
+def pour(drink, uuid):
     
-    print("DRINK REQUESTED: " + drink)
-    poured = bot.pour_parallel(drink)
-    flash("Done! I poured: " + poured)
-    return redirect("/")
+    print("DRINK REQUESTED: " + drink + " with UUID: " + uuid)
+
+    bot.enque(drink, uuid)
+
+    return redirect("/drink_queue")
+
+    # poured = bot.pour_parallel(drink)
+    # flash("Done! I poured: " + poured)
+    # return redirect("/")
+
+@app.route("/drink_queue")
+def show_drink_queue():
+    return render_template("queue.html", bot=bot)
+
     
 def get_messages(bot):
     for m in bot.messages:
         flash(m)
 
+
+@app.route("/release/<uuid>")
+def validated_pour(uuid):
+    print("Trying to pour: " + uuid)
+    # check the UUID
+    if bot.get_next_drink_uuid() == uuid:
+        bot.pour_parallel_next()
+    else:
+        print("ERRR!")
+    print( "DONE! Redirecting to home!" )
+    return redirect("/")
+    
+
+
+@app.route("/test_release", methods=["POST"])
+def test_pour():
+
+
+    req = request.get_json()
+
+    print(req)
+
+    res = make_response(jsonify({"message": "message received" }), 200)
+
+    return res
+    # print("Trying to pour: " + uuid)
+    # # check the UUID
+    # if bot.get_next_drink_uuid() == uuid:
+    #     bot.pour_parallel_next()
+    # else:
+    #     print("ERRR!")
+    # print( "DONE! Redirecting to home!" )
+    # return redirect("/")
+    
+
+
+@app.route("/drink_release", methods=["POST"])
+def drink_release():
+
+    req = request.get_json()
+
+    print(req)
+
+    bot.pour_parallel_next()
+
+    res = make_response(jsonify({"message": "message received" }), 200)
+
+    return res
+
+@app.route("/skip/<uuid>")
+def skip_drink(uuid):
+     bot.deque(uuid)
+
+     return redirect("/drink_queue")

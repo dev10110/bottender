@@ -1,5 +1,11 @@
+import os
 
-import RPi.GPIO as GPIO
+dummy_mode = False
+if os.environ.get("DUMMY_MODE") == "TRUE":
+    dummy_mode=True
+
+if not dummy_mode:
+    import RPi.GPIO as GPIO
 import time
 
 STOP = 0
@@ -14,11 +20,12 @@ class MotorController:
         self.pinA = pinA
         self.pinB = pinB
 
-        GPIO.setup(pinA, GPIO.OUT)
-        GPIO.setup(pinB, GPIO.OUT)
+        if not dummy_mode:
+            GPIO.setup(pinA, GPIO.OUT)
+            GPIO.setup(pinB, GPIO.OUT)
 
-        GPIO.output(pinA, GPIO.LOW)
-        GPIO.output(pinB, GPIO.LOW)
+            GPIO.output(pinA, GPIO.LOW)
+            GPIO.output(pinB, GPIO.LOW)
 
         self.start_timer = time.time()
         self.calibration = None
@@ -27,18 +34,21 @@ class MotorController:
 
     def stop(self):
         self.state = STOP
-        GPIO.output(self.pinA, GPIO.LOW)
-        GPIO.output(self.pinB, GPIO.LOW)
+        if not dummy_mode:
+            GPIO.output(self.pinA, GPIO.LOW)
+            GPIO.output(self.pinB, GPIO.LOW)
 
     def forward(self):
         self.state = FORWARD
-        GPIO.output(self.pinA, GPIO.HIGH)
-        GPIO.output(self.pinB, GPIO.LOW)
+        if not dummy_mode:
+            GPIO.output(self.pinA, GPIO.HIGH)
+            GPIO.output(self.pinB, GPIO.LOW)
 
     def reverse(self):
         self.state = REVERSE
-        GPIO.output(self.pinA, GPIO.LOW)
-        GPIO.output(self.pinB, GPIO.HIGH)      
+        if not dummy_mode:
+            GPIO.output(self.pinA, GPIO.LOW)
+            GPIO.output(self.pinB, GPIO.HIGH)      
 
 
     def dispense(self, ms):

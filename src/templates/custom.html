@@ -3,6 +3,19 @@
 
 {% block content %}
 
+<section class="container">
+	<hgroup>
+		<h2> All Motors  </h2>
+		<h3></h3>
+	</hgroup>
+	<p>
+	<a href="/-1/forward" class="btn btn-block btn-lg btn-primary" role="button">FORWARD</a>
+	 <a href="/-1/stop" class="btn btn-block btn-lg btn-primary" role="button">STOP</a>
+	 <a href="/-1/reverse" class="btn btn-block btn-lg btn-primary" role="button">REVERSE</a>
+
+	</p>
+</section>
+
 	{% for i in  range(bot.num_motors()) %}
 	<section class="container">
 		<hgroup>
