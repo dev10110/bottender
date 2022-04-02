@@ -169,12 +169,14 @@ def drive_motor():
 
     print(req)
 
-    if req["dir"] == 1:
+    if req["action"] == "forward":
         bot.forward(req["motor_id"])
-    if req["dir"] == -1:
+    if req["action"] == "reverse":
         bot.reverse(req["motor_id"])
-    if req["dir"] == 0:
-        bot.stop(req["motor_id"])        
+    if req["action"] == "stop":
+        bot.stop(req["motor_id"])     
+    if req["action"] == "dispense":
+        bot.dispense_oz(req["motor_id"], 0.5)
 
     res = make_response(jsonify({"message": "message received" }), 200)
 

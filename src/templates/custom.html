@@ -32,9 +32,10 @@
 	   <a href="/{{ i }}/dispense" class="btn btn-block btn-lg btn-primary outline" role="button">Dispense 0.5 oz</a> 
 		-->
 
-		<button id="motor_{{i}}_forward" class=primary {{ type_F }}" role="button" onClick="drive_motor({{i}}, 1)">forward</button>
-		<button id="motor_{{i}}_forward" class="primary {{ type_S }}" role="button" onClick="drive_motor({{i}}, 0)">stop</button>
-		<button id="motor_{{i}}_forward" class="primary {{ type_R }}" role="button" onClick="drive_motor({{i}}, -1)">reverse</button>
+		<button class=primary {{ type_F }}" role="button" onClick="drive_motor({{i}}, 'forward')">forward</button>
+		<button class="primary {{ type_S }}" role="button" onClick="drive_motor({{i}}, 'stop')">stop</button>
+		<button class="primary {{ type_R }}" role="button" onClick="drive_motor({{i}}, 'reverse')">reverse</button>
+		<button class="primary" role="button" onClick="drive_motor({{i}}, 'dispense')">Dispense</button>
 		</p>
 	</section>
 	{% endfor %}
@@ -49,7 +50,7 @@
 
 		var command = {
 			motor_id: id,
-			dir: dir
+			action: dir
 		}
 
 		fetch(`${window.origin}/custom/drive_motor`, {
