@@ -8,14 +8,15 @@ class DrinksController:
     def __init__(self):
 
         self.drinks = [
-            'Cranberry Juice',
-            'Ginger Beer',
-            'Grenadine',
             'Malibu',
-            'Orange Juice',
-            'Pineapple Juice',
+            'Vodka',
             'Tequila',
-            'Vodka']
+            'Ginger Beer',
+            'Cranberry Juice',
+            'Pineapple Juice',
+            'Grenadine',
+            'Orange Juice'
+        ]
         self.menu = MENU
         return
 
