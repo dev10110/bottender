@@ -6,7 +6,7 @@ import os
 
 
 os.environ['DUMMY_MODE'] = 'TRUE'
-os.environ['DUMMY_MODE'] = 'FALSE'
+# os.environ['DUMMY_MODE'] = 'FALSE'
 
 
 print(os.environ.get('DUMMY_MODE'))
@@ -182,3 +182,19 @@ def drive_motor():
     res = make_response(jsonify({"message": "message received" }), 200)
 
     return res
+
+
+@app.route("/get_motor_state")
+def get_motor_state():
+
+
+    states = {}
+    print(bot.num_motors())
+    for i in range(bot.num_motors()):
+       states[i] = bot.motors[i].get_state()
+    
+    res = make_response(jsonify(states), 200)
+
+    return res
+
+

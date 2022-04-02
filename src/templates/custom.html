@@ -32,10 +32,10 @@
 	   <a href="/{{ i }}/dispense" class="btn btn-block btn-lg btn-primary outline" role="button">Dispense 0.5 oz</a> 
 		-->
 
-		<button class=primary {{ type_F }}" role="button" onClick="drive_motor({{i}}, 'forward')">forward</button>
-		<button class="primary {{ type_S }}" role="button" onClick="drive_motor({{i}}, 'stop')">stop</button>
-		<button class="primary {{ type_R }}" role="button" onClick="drive_motor({{i}}, 'reverse')">reverse</button>
-		<button class="primary" role="button" onClick="drive_motor({{i}}, 'dispense')">Dispense</button>
+		<button id="button_forward_{{i}}" class=primary {{ type_F }}" role="button" onClick="drive_motor({{i}}, 'forward')">forward</button>
+		<button id="button_stop_{{i}}" class="primary {{ type_S }}" role="button" onClick="drive_motor({{i}}, 'stop')">stop</button>
+		<button id="button_reverse_{{i}}" class="primary {{ type_R }}" role="button" onClick="drive_motor({{i}}, 'reverse')">reverse</button>
+		<button id="button_forward_{{i}}" class="primary" role="button" onClick="drive_motor({{i}}, 'dispense')">Dispense</button>
 		</p>
 	</section>
 	{% endfor %}
@@ -68,7 +68,47 @@
 		}
 		)
 
+		// response = await fetch(`${window.origin}/get_motor_state`)
 
+		// console.log(response.json())
+
+		// get the motor state
+		fetch(`${window.origin}/get_motor_state`, {
+      method:"GET",
+      credentials: "include",
+      // body: JSON.stringify(command), 
+      cache: "no-cache", 
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+		.then( response => response.json())
+		.then(data => {
+
+			if (data[id] == 1){
+				document.getElementById(`button_forward_${id}`).className="primary outline";
+			}
+			else{
+				document.getElementById(`button_forward_${id}`).className="primary";
+			}
+
+			if (data[id] == 0){
+				document.getElementById(`button_stop_${id}`).className="primary outline";
+			}
+			else{
+				document.getElementById(`button_stop_${id}`).className="primary";
+			}
+
+			if (data[id] == -1){
+				document.getElementById(`button_reverse_${id}`).className="primary outline";
+			}
+			else{
+				document.getElementById(`button_reverse_${id}`).className="primary";
+			}
+			
+
+			
+		});
 	}
 
 
