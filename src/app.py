@@ -162,3 +162,23 @@ def skip_drink(uuid):
      bot.deque(uuid)
 
      return redirect("/drink_queue")
+
+@app.route("/custom/drive_motor", methods=["POST"])
+def drive_motor():
+
+    req = request.get_json()
+
+    print(req)
+
+    if req["action"] == "forward":
+        bot.forward(req["motor_id"])
+    if req["action"] == "reverse":
+        bot.reverse(req["motor_id"])
+    if req["action"] == "stop":
+        bot.stop(req["motor_id"])     
+    if req["action"] == "dispense":
+        bot.dispense_oz(req["motor_id"], 0.5)
+
+    res = make_response(jsonify({"message": "message received" }), 200)
+
+    return res
