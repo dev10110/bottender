@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<section class="container">
+<!-- <section class="container">
 	<hgroup>
 		<h2> All Motors  </h2>
 		<h3></h3>
@@ -14,7 +14,7 @@
 	 <a href="/-1/reverse" class="btn btn-block btn-lg btn-primary" role="button">REVERSE</a>
 
 	</p>
-</section>
+</section> -->
 
 	{% for i in  range(bot.num_motors()) %}
 	<section class="container">
@@ -26,11 +26,51 @@
 			{% set type_F = "outline" if bot.motors[i].get_state() == 1 else "" %}
 			{% set type_S = "outline" if bot.motors[i].get_state() == 0 else "" %}
 			{% set type_R = "outline" if bot.motors[i].get_state() == -1 else "" %}
-		<a href="/{{ i }}/forward" class="btn btn-block btn-lg btn-primary {{ type_F }}" role="button">FORWARD</a>
+		<!-- <a href="/{{ i }}/forward" class="btn btn-block btn-lg btn-primary {{ type_F }}" role="button">FORWARD</a>
 	   <a href="/{{ i }}/stop" class="btn btn-block btn-lg btn-primary {{ type_S }}" role="button">STOP</a>
 	   <a href="/{{ i }}/reverse" class="btn btn-block btn-lg btn-primary {{ type_R }}" role="button">REVERSE</a>
-	   <a href="/{{ i }}/dispense" class="btn btn-block btn-lg btn-primary outline" role="button">Dispense 0.5 oz</a>
+	   <a href="/{{ i }}/dispense" class="btn btn-block btn-lg btn-primary outline" role="button">Dispense 0.5 oz</a> 
+		-->
+
+		<button id="motor_{{i}}_forward" class=primary {{ type_F }}" role="button" onClick="drive_motor({{i}}, 1)">forward</button>
+		<button id="motor_{{i}}_forward" class="primary {{ type_S }}" role="button" onClick="drive_motor({{i}}, 0)">stop</button>
+		<button id="motor_{{i}}_forward" class="primary {{ type_R }}" role="button" onClick="drive_motor({{i}}, -1)">reverse</button>
 		</p>
 	</section>
 	{% endfor %}
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+	function drive_motor(id, dir){
+		console.log("DRIVING MOTOR", id, "in direction ", dir);
+
+		var command = {
+			motor_id: id,
+			dir: dir
+		}
+
+		fetch(`${window.origin}/custom/drive_motor`, {
+      method:"POST",
+      credentials: "include",
+      body: JSON.stringify(command), 
+      cache: "no-cache", 
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    }).then( function (response) {
+			
+				console.log("Received response");
+				// console.log(response.message);
+		}
+		)
+
+
+	}
+
+
+</script>
+
 {% endblock %}
