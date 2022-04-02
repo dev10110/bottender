@@ -72,6 +72,7 @@ greyhound=Drink("greyhound","Greyhound",{"Vodka":2, "Grapefruit Soda":3.5,"Honey
 pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver",{"Vodka":2,"Pineapple Juice":4})
 the_joseph=Drink("the_joseph","The Joseph",{"Grapefruit Soda":4.0, "Honey Syrup":1.0})
 honey_shot =Drink("honey_shot","Honey Shot",{"Honey Syrup":0.5})
+test_drink = Drink("test_drink", "Test Drink", {"Vodka": 0.5, "Pineapple Juice": 0.5})
 
 MENU = [
     gold_rush,
@@ -83,5 +84,6 @@ MENU = [
     pineapple_screwdriver,
     the_joseph,
     honey_shot
+    #test_drink
 ]
 
