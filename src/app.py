@@ -6,7 +6,7 @@ import os
 
 
 os.environ['DUMMY_MODE'] = 'TRUE'
-# os.environ['DUMMY_MODE'] = 'FALSE'
+os.environ['DUMMY_MODE'] = 'FALSE'
 
 
 print(os.environ.get('DUMMY_MODE'))
@@ -152,6 +152,21 @@ def drink_release():
     print(req)
 
     bot.pour_parallel_next()
+
+    res = make_response(jsonify({"message": "message received" }), 200)
+
+    return res
+
+@app.route("/honey_shot_release", methods=["POST"])
+def honey_shot_release():
+
+    req = request.get_json()
+
+    print(req)
+
+    
+    bot.pour("honey_shot")
+    print("Poured honey shot")
 
     res = make_response(jsonify({"message": "message received" }), 200)
 

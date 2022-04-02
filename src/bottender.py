@@ -32,7 +32,7 @@ class BotTender:
         ]
 
         ## TEMPORARY!
-        dispense_per_five_sec = [s*10 for s in dispense_per_five_sec]
+        # dispense_per_five_sec = [s*10 for s in dispense_per_five_sec]
         
         self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec];
         
@@ -130,8 +130,9 @@ class BotTender:
         return poured
 
     def pour_parallel_next(self):
-        drink_id, uuid_id = self.drink_queue.pop(0) # also removes it from the list
-        self.pour_parallel(drink_id)
+        if len(self.drink_queue) >= 1:
+            drink_id, uuid_id = self.drink_queue.pop(0) # also removes it from the list
+            self.pour_parallel(drink_id)
 
 
     def pour_parallel(self, drink_id):

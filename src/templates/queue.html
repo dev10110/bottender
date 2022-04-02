@@ -22,6 +22,7 @@
         <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
         <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
         
+        
       
       {% else %}
       <p>
@@ -29,6 +30,8 @@
       </p>
 
       {% endif %}
+
+      <a  id="honey" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release_honey();">Honey Shot</a>
 
     </section>
     <section>
@@ -98,6 +101,54 @@
     
 
   }
+
+  function release_honey(){
+
+    document.getElementById("emptyglass").hidden = true;
+    document.getElementById("fillgif").hidden = false;
+    document.getElementById("filledglass").hidden = true;
+    // document.getElementById("release").innerText = "Pouring..."
+    var honey_button = document.getElementById("honey")
+    honey_button.innerText = "Pouring Honey..."
+    honey_button.className += " outline";
+    honey_button.setAttribute('aria-busy', "true");
+    honey_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
+
+
+    fetch(`${window.origin}/honey_shot_release`, {
+      method:"POST",
+      credentials: "include",
+      body: JSON.stringify("release"), 
+      cache: "no-cache", 
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    }).then( function (response) {
+
+      if (response.status !== 200){
+        console.log("STATUS IS NOT 200")
+        return;
+      }
+
+      
+      honey_button.innerText = "Honey Shot"
+      honey_button.setAttribute('aria-busy', "false")
+      document.getElementById("emptyglass").hidden = true;
+      document.getElementById("fillgif").hidden = true;
+      document.getElementById("filledglass").hidden = false;
+
+      honey_button.setAttribute('onclick', "release_honey()");
+      honey_button.className = "btn btn-block btn-lg btn-primary"
+
+      // window.location.reload();
+
+      
+      
+  }
+)
+
+
+}
 
 
   function reloadPage(){
