@@ -58,9 +58,11 @@ class DrinksController:
 
         # return sorted(self.menu, key=lambda d: self.get_ingredient_availability(d), reverse=True)
         items = sorted(self.menu, key=lambda d: d.name, reverse=False)
+        
+        return items
 
-        non_honey_items = [i for i in items if i.id != "honey_shot"]
+        # non_honey_items = [i for i in items if i.id != "honey_shot"]
 
-        return non_honey_items
+        #return non_honey_items
 
 
