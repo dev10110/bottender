@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Menu {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <!-- {% for d in bot.all_drinks() %} 
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">  
+        <article>
+            <h3>{{ d.name }}</h3>
+            <ul>
+            {% for i in d.ingredients.keys() %}
+                {% set avail =  bot.is_available(i) %}
+                <li> {{ i }}</li>
+            {% endfor %}
+            </ul>
+            <footer>
+                <a href="/pour/{{d.id}}/{{uuid}}" role="button">Pour</a>
+            </footer>
+        </article>
+    </div>
+    {% endfor %} -->
+
+    <table>
+        <tr>
+            <td>
+                <hgroup>
+                <h3>Suprise Me</h3>
+                <h4></h4>
+                </hgroup>
+              </td>
+
+            <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
+          </tr>
+        {% for d in bot.all_drinks() %} 
+        <tr>
+          <td>
+              <hgroup>
+              <h3>{{ d.name }}</h3>
+              <h4>{{ ', '.join(d.ingredients.keys()) }}</h4>
+              </hgroup>
+            </td>
+          
+          <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    
+</div>
+</div>
+
+{% endblock %}

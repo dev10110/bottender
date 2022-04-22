@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Menu {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Setup BotTender</h2>
+      <hr>
+<form action="/setup" method="POST">
+
+    {% for i in range(bot.num_motors()) %}
+  <div class="form-group">
+    <label for="drink{{i}}">Drink {{i+1}} - [ {{ bot.get_loaded_drink(i) }} ]</label>
+    <select id="drink{{i}}" name="drink{{i}}" required>
+        {% for j in range(bot.all_ingredients() | length) %}
+        {% set drink = bot.all_ingredients()[j] %}
+        {% set selected_drink = bot.get_loaded_drink(i) %}
+        {% set selected = selected_drink == drink %}
+        <option value="{{ bot.all_ingredients()[j] }}" 
+            {% if selected %} selected {% endif %} 
+         >{{ bot.all_ingredients()[j] }}
+        </option>
+        {% endfor %}
+    </select>
+   </div>
+    {% endfor %}
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

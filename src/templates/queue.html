@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %} Drinks Queue {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <section>
+      
+      <h2>Up Next: {{ bot.get_next_drink_name() }} </h2>
+
+      <img id="emptyglass" src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}"/> 
+      <img id="fillgif" hidden src="{{ url_for('static', filename='gifs/fill_gif.gif') }}"/> 
+      <img id="filledglass" hidden src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}"/> 
+
+      </section>
+      <section>
+      {% if bot.get_next_drink_uuid() %}
+      
+        <a  id="release" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release();">Pour</a>
+        <a  id="skip" href="/skip/{{bot.get_next_drink_uuid()}}" class="btn btn-block btn-lg btn-secondary outline" role="button">Skip</a>
+        <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
+        <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
+        
+        
+      
+      {% else %}
+      <p>
+        <a href="/" class="btn btn-block btn-lg btn-primary" role="button">Choose a drink</a>
+      </p>
+
+      {% endif %}
+
+      /*
+        <a  id="honey" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release_honey();">Pour Extra Honey Shot</a>
+      */
+    </section>
+    <section>
+      <h3>In the Queue: </h3>
+      <ol>
+      {% for drink in bot.drink_queue %}
+        <li> {{bot.find_drink(drink[0]).name}}</li>
+      {% endfor %}
+    </ol>
+    </section>
+</div>
+
+{% endblock %}
+ 
+{% block script %}
+
+<script>
+
+  function release(){
+
+    // var uuid = {{ bot.get_next_drink_uuid() }} 
+
+    // console.log(uuid)
+    document.getElementById("emptyglass").hidden = true;
+    document.getElementById("fillgif").hidden = false;
+    document.getElementById("filledglass").hidden = true;
+    // document.getElementById("release").innerText = "Pouring..."
+    var release_button = document.getElementById("release")
+    release_button.innerText = "Pouring..."
+    release_button.className += " outline";
+    release_button.setAttribute('aria-busy', "true");
+    release_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
+
+    document.getElementById("skip").hidden=true;
+
+  
+    fetch(`${window.origin}/drink_release`, {
+      method:"POST",
+      credentials: "include",
+      body: JSON.stringify("release"), 
+      cache: "no-cache", 
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    }).then( function (response) {
+
+      if (response.status !== 200){
+        console.log("STATUS IS NOT 200")
+        return;
+      }
+
+      
+      release_button.innerText = "Done!"
+      release_button.setAttribute('aria-busy', "false")
+      document.getElementById("emptyglass").hidden = true;
+      document.getElementById("fillgif").hidden = true;
+      document.getElementById("filledglass").hidden = false;
+
+      document.getElementById("next").hidden=false;
+
+      // window.location.reload();
+
+      
+      
+      }
+    )
+    
+
+  }
+
+  function release_honey(){
+
+    document.getElementById("emptyglass").hidden = true;
+    document.getElementById("fillgif").hidden = false;
+    document.getElementById("filledglass").hidden = true;
+    // document.getElementById("release").innerText = "Pouring..."
+    var honey_button = document.getElementById("honey")
+    honey_button.innerText = "Pouring Honey..."
+    honey_button.className += " outline";
+    honey_button.setAttribute('aria-busy', "true");
+    honey_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
+
+
+    fetch(`${window.origin}/honey_shot_release`, {
+      method:"POST",
+      credentials: "include",
+      body: JSON.stringify("release"), 
+      cache: "no-cache", 
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    }).then( function (response) {
+
+      if (response.status !== 200){
+        console.log("STATUS IS NOT 200")
+        return;
+      }
+
+      
+      honey_button.innerText = "Honey Shot"
+      honey_button.setAttribute('aria-busy', "false")
+      document.getElementById("emptyglass").hidden = true;
+      document.getElementById("fillgif").hidden = true;
+      document.getElementById("filledglass").hidden = false;
+
+      honey_button.setAttribute('onclick', "release_honey()");
+      honey_button.className = "btn btn-block btn-lg btn-primary"
+
+      // window.location.reload();
+
+      
+      
+  }
+)
+
+
+}
+
+
+  function reloadPage(){
+    window.location.reload();
+  }
+
+</script>
+
+{% endblock %}
