@@ -75,7 +75,7 @@ class Drink:
 # pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver",{"Vodka":2,"Pineapple Juice":4})
 # the_joseph=Drink("the_joseph","The Joseph",{"Grapefruit Soda":4.0, "Honey Syrup":1.0})
 # the_joseph_v2=Drink("the_joseph_v2","The Joseph V2",{"Pineapple Juice":4.0, "Honey Syrup":1.0})
-# honey_shot =Drink("honey_shot","Honey Shot",{"Honey Syrup":0.5})
+honey_shot =Drink("honey_shot","Honey Shot",{"Honey Syrup":0.5})
 # test_drink = Drink("test_drink", "Test Drink", {"Vodka": 0.5, "Pineapple Juice": 0.5})
 
 # MENU = [
@@ -291,4 +291,5 @@ MENU = [
     tropical_melon_chuhai,
     yuzu_chuhai,
     guava_sakerita,
+    honey_shot,
 ]
