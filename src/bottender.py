@@ -106,6 +106,12 @@ class BotTender:
             return self.find_drink(self.drink_queue[0][0]).name
         return "[Nothing Queued]"
 
+    def get_next_drink_garnish(self):
+        if len(self.drink_queue) >= 1:
+
+            return self.find_drink(self.drink_queue[0][0]).garnish
+        return "[Nothing Queued]"
+
     def get_next_drink_uuid(self):
         if len(self.drink_queue) >= 1:
             return self.drink_queue[0][1]

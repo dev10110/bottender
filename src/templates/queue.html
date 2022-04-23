@@ -21,7 +21,7 @@
         <a  id="skip" href="/skip/{{bot.get_next_drink_uuid()}}" class="btn btn-block btn-lg btn-secondary outline" role="button">Skip</a>
         <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
         <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
-        {{ bot.drink_queue[0].garnish }} 
+        <p>{{ bot.get_next_drink_garnish() }} </p>
         
       
       {% else %}
