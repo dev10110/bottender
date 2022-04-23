@@ -7,17 +7,26 @@ class DrinksController:
 
     def __init__(self):
 
-        self.drinks = [
-            'Vodka',
-            'Lime Juice',
-            'Lemon Juice',
-            'Simple Syrup',
-            'Spiced Rum',
-            'Cranberry Juice',
-            'Cointreau',
-            'Pineapple Juice'
-        ]
         self.menu = MENU
+
+        ing = []
+        for d in self.menu:
+            ing.extend(d.ingredients.keys())
+        ing = sorted(list(set(ing)))
+
+        self.drinks = [ing[i] for i in range(12)]
+
+        # self.drinks = [
+        #     'Vodka',
+        #     'Lime Juice',
+        #     'Lemon Juice',
+        #     'Simple Syrup',
+        #     'Spiced Rum',
+        #     'Cranberry Juice',
+        #     'Cointreau',
+        #     'Pineapple Juice'
+        # ]
+        
         return
 
     def set_drinks(self, drinks):
@@ -57,7 +66,7 @@ class DrinksController:
     def get_menu(self):
 
         # return sorted(self.menu, key=lambda d: self.get_ingredient_availability(d), reverse=True)
-        items = sorted(self.menu, key=lambda d: d.name, reverse=False)
+        items = sorted(self.menu, key=lambda d: d.sort_priority, reverse=False)
         
         return items
 

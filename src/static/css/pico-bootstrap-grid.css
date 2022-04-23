@@ -308,19 +308,19 @@ kbd {
 [data-theme=light],
 :root:not([data-theme=dark]) {
   color-scheme: light;
-  --background-color: #fffcee;
-  --color: #77818A;
-  --h1-color: #243f87;
-  --h2-color: #243f87;
-  --h3-color: #243f87;
-  --h4-color: #243f87;
-  --h5-color: #243f87;
-  --h6-color: #243f87;
+  --background-color: #ffffff;         /****** BACKGROUND COLOR *******/
+  --color: #303030;                    /****** BASIC TEXT COLOR *****/
+  --h1-color: #d01500;                   /****** HEADING COLOR *****/
+  --h2-color: #d01500;
+  --h3-color: #d01500;
+  --h4-color: #d01500;
+  --h5-color: #d01500;
+  --h6-color: #d01500;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #243f87;
-  --primary-hover: #738ac9;
-  --primary-focus: #738ac9;
+  --primary: #d01500;                  /********** PRIMARY ***********/
+  --primary-hover: #ff9c8f;
+  --primary-focus: #ff9c8f;
   --primary-inverse: #fff;
   --secondary: #596b78;
   --secondary-hover: #415462;
