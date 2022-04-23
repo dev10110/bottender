@@ -17,11 +17,13 @@
       <section>
       {% if bot.get_next_drink_uuid() %}
       
+      <h3>{{ bot.get_next_drink_garnish() }} </h3>
+      
         <a  id="release" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release();">Pour</a>
         <a  id="skip" href="/skip/{{bot.get_next_drink_uuid()}}" class="btn btn-block btn-lg btn-secondary outline" role="button">Skip</a>
         <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
         <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
-        <p>{{ bot.get_next_drink_garnish() }} </p>
+        
         
       
       {% else %}
