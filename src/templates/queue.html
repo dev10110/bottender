@@ -9,9 +9,6 @@
       
       <h2>Up Next: {{ bot.get_next_drink_name() }} </h2>
 
-      {% if bot.drink_queue | length > 0 %}
-      <h3>{{ bot.drink_queue[0].garnish }} </h3>
-      {% endif %}
       <img id="emptyglass" src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}"/> 
       <img id="fillgif" hidden src="{{ url_for('static', filename='gifs/fill_gif.gif') }}"/> 
       <img id="filledglass" hidden src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}"/> 
@@ -24,7 +21,7 @@
         <a  id="skip" href="/skip/{{bot.get_next_drink_uuid()}}" class="btn btn-block btn-lg btn-secondary outline" role="button">Skip</a>
         <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
         <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
-        
+        {{ bot.drink_queue[0].garnish }} 
         
       
       {% else %}
