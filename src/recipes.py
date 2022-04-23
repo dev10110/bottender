@@ -119,7 +119,7 @@ class Drink:
 spicy_passionfruit_sakerita = Drink(
     "spicy_passionfruit_sakerita",
     "Spicy Passionfruit Sakerita",
-    {"Passion Fruit Syrup": 1.0, "Sake":2.0, "Yuzu":0.5, "Cointreau":0.25},
+    {"Passionfruit Syrup": 1.0, "Sake":2.0, "Yuzu":0.5, "Cointreau":0.25},
     recommended=True,
     sort_priority=17,
     section="Sake",
