@@ -66,7 +66,7 @@ class DrinksController:
     def get_menu(self):
 
         # return sorted(self.menu, key=lambda d: self.get_ingredient_availability(d), reverse=True)
-        items = sorted(self.menu, key=lambda d: d.sort_priority, reverse=False)
+        items = sorted(self.menu, key=lambda d: d.sort_priority, reverse=True)
         
         return items
 
