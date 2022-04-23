@@ -21,7 +21,7 @@
   src: url("HinaMincho.ttf");
 }
 
-@import url("https://use.typekit.net/deu0fgs.css");
+/* @import url("https://use.typekit.net/deu0fgs.css"); */
 
 :root {
   /* --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
@@ -156,9 +156,9 @@ h5,
 h6 {
   /* --font-weight: 300;
   --font-family: "Glegoo"; */
-  font-family: aileron,sans-serif;
-  font-weight: 900;
-  font-style: normal;
+  --font-family: aileron,sans-serif;
+  --font-weight: 900;
+  --font-style: normal;
 }
 
 h1 {
