@@ -23,7 +23,7 @@ class BotTender:
         dispense_per_five_sec = [
             0.71,
             0.63,
-            0.525,
+            0.64,
             0.63,
             0.786,
             0.787,
