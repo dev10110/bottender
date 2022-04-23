@@ -9,7 +9,7 @@
       
       <h2>Up Next: {{ bot.get_next_drink_name() }} </h2>
 
-      {% if len(bot.drink_queue) > 0 %}
+      {% if bot.drink_queue | length > 0 %}
       <h3>{{ bot.drink_queue[0].garnish }} </h3>
       {% endif %}
       <img id="emptyglass" src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}"/> 
