@@ -13,7 +13,7 @@ if not dummy_mode:
 import time
 
 
-from motor_controller import MotorController
+from motor_controller_pca9685 import MotorController
 from drinks_controller import DrinksController
 
 class BotTender:
@@ -28,7 +28,11 @@ class BotTender:
             0.60,
             0.62,
             0.63,
-            0.58
+            0.58,
+            0.5, 
+            0.5, 
+            0.5,
+            0.5
         ]
 
         ## TEMPORARY!
@@ -36,25 +40,26 @@ class BotTender:
         
         self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec];
         
-        if not dummy_mode:
-            GPIO.setmode(GPIO.BCM)
+        # if not dummy_mode:
+        #     GPIO.setmode(GPIO.BCM)
 
-        self.switch = 17
-        if not dummy_mode:
-            GPIO.setup(self.switch, GPIO.IN)
+        # self.switch = 17
+        # if not dummy_mode:
+        #     GPIO.setup(self.switch, GPIO.IN)
 
         self.messages = []
         
-        self.motors = [ # define each motor here
-            MotorController(21, 20), #M1 
-            MotorController(16, 12), #M2
-            MotorController(26, 19), #M3
-            MotorController(11, 13), #M4
-            MotorController(23, 18), #M5 
-            MotorController(24, 25), #M6
-            MotorController(22, 27), #M7
-            MotorController(10, 9) #M8
-        ]
+        # self.motors = [ # define each motor here
+        #     MotorController(21, 20), #M1 
+        #     MotorController(16, 12), #M2
+        #     MotorController(26, 19), #M3
+        #     MotorController(11, 13), #M4
+        #     MotorController(23, 18), #M5 
+        #     MotorController(24, 25), #M6
+        #     MotorController(22, 27), #M7
+        #     MotorController(10, 9) #M8
+        # ]
+        self.motors = [MotorController(i) for i in range(12)]
 
         self.drinksController = DrinksController()    
 
@@ -204,9 +209,9 @@ class BotTender:
         
     def validate(self, motor):
 
-        if not self.check_switch():
-            print("SWITCH IS LOW")
-            return False
+        # if not self.check_switch():
+        #     print("SWITCH IS LOW")
+        #     return False
 
         if motor > len(self.motors)-1:
             print("WARNING: COMMANDING UNINITIALISED MOTOR")
