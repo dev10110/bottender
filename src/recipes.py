@@ -87,8 +87,8 @@ MENU = [
     greyhound,
     pineapple_screwdriver,
     the_joseph_v2,
-    honey_shot
-    #test_drink
+    honey_shot,
+    test_drink
 ]
 
 

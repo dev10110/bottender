@@ -59,7 +59,7 @@ class BotTender:
         #     MotorController(22, 27), #M7
         #     MotorController(10, 9) #M8
         # ]
-        self.motors = [MotorController(i) for i in range(12)]
+        self.motors = [MotorController(i) for i in range(8)]
 
         self.drinksController = DrinksController()    
 

@@ -318,17 +318,17 @@ kbd {
 [data-theme=light],
 :root:not([data-theme=dark]) {
   color-scheme: light;
-  --background-color: #ffffff;         /****** BACKGROUND COLOR *******/
-  --color: #303030;                    /****** BASIC TEXT COLOR *****/
-  --h1-color: #d01500;                   /****** HEADING COLOR *****/
-  --h2-color: #d01500;
-  --h3-color: #d01500;
-  --h4-color: #d01500;
-  --h5-color: #d01500;
-  --h6-color: #d01500;
+  --background-color: #fffff0;         /****** BACKGROUND COLOR *******/
+  --color: #935B38;                    /****** BASIC TEXT COLOR *****/
+  --h1-color: #C57C32;                   /****** HEADING COLOR *****/
+  --h2-color: #C57C32;
+  --h3-color: #C57C32;
+  --h4-color: #C57C32;
+  --h5-color: #C57C32;
+  --h6-color: #C57C32;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #d01500;                  /********** PRIMARY ***********/
+  --primary: #C57C32;                  /********** PRIMARY ***********/
   --primary-hover: #ff9c8f;
   --primary-focus: #ff9c8f;
   --primary-inverse: #fff;
