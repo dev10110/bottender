@@ -14,19 +14,8 @@ class DrinksController:
             ing.extend(d.ingredients.keys())
         ing = sorted(list(set(ing)))
 
-        #self.drinks = [ing[i] for i in range(12)]
-        self.drinks = [ing[i] for i in range(8)]
+        self.drinks = [ing[i] for i in range(12)]
 
-        # self.drinks = [
-        #     'Vodka',
-        #     'Lime Juice',
-        #     'Lemon Juice',
-        #     'Simple Syrup',
-        #     'Spiced Rum',
-        #     'Cranberry Juice',
-        #     'Cointreau',
-        #     'Pineapple Juice'
-        # ]
         
         return
 

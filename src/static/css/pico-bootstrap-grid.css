@@ -21,13 +21,19 @@
   src: url("HinaMincho.ttf");
 }
 
+@font-face {
+  font-family: Pirou;
+  src: url("Pirou-Regular.otf");
+}
+
 /* @import url("https://use.typekit.net/deu0fgs.css"); */
 
 :root {
   /* --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
     "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji"; */
-  --font-family: "HinaMincho", serif;
+  //--font-family: "HinaMincho", serif;
+  --font-family: "Montserrat", serif;
   --line-height: 1.5;
   --font-weight: 400;
   --font-size: 16px;
@@ -155,7 +161,8 @@ h4,
 h5,
 h6 {
   /* --font-weight: 300;
-  --font-family: "Glegoo"; */
+  //--font-family: "Glegoo"; */
+  --font-family: "Pirou"; */
   --font-family: aileron,sans-serif;
   --font-weight: 900;
   --font-style: normal;
@@ -318,17 +325,17 @@ kbd {
 [data-theme=light],
 :root:not([data-theme=dark]) {
   color-scheme: light;
-  --background-color: #fffff0;         /****** BACKGROUND COLOR *******/
-  --color: #935B38;                    /****** BASIC TEXT COLOR *****/
-  --h1-color: #C57C32;                   /****** HEADING COLOR *****/
-  --h2-color: #C57C32;
-  --h3-color: #C57C32;
-  --h4-color: #C57C32;
-  --h5-color: #C57C32;
-  --h6-color: #C57C32;
+  --background-color: #fcf5d6;         /****** BACKGROUND COLOR *******/
+  --color: #303c45;                    /****** BASIC TEXT COLOR *****/
+  --h1-color: #303c45;                   /****** HEADING COLOR *****/
+  --h2-color: #303c45;
+  --h3-color: #303c45;
+  --h4-color: #303c45;
+  --h5-color: #303c45;
+  --h6-color: #303c45;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #C57C32;                  /********** PRIMARY ***********/
+  --primary: #303c45;                  /********** PRIMARY ***********/
   --primary-hover: #ff9c8f;
   --primary-focus: #ff9c8f;
   --primary-inverse: #fff;

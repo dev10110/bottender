@@ -27,14 +27,15 @@
         <tr>
             <td>
                 <hgroup>
-                <h3>Suprise Me</h3>
+                <a href="/pour/painkiller/{{uuid}}"><h3>Suprise Me</h3></a>
                 <h4></h4>
                 </hgroup>
               </td>
 
             <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
           </tr>
-        {% for d in bot.all_drinks() %} 
+        {% for d in bot.all_drinks() %}
+        {% if d.hidden != True %}
         <tr>
           <td>
               <hgroup>
@@ -45,6 +46,7 @@
           
           <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
         </tr>
+        {% endif %}
         {% endfor %}
       </table>
     
