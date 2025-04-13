@@ -160,9 +160,8 @@ h3,
 h4,
 h5,
 h6 {
-  /* --font-weight: 300;
-  //--font-family: "Glegoo"; */
-  --font-family: "Pirou"; */
+  /* --font-weight: 300;*/
+  --font-family: "Pirou"; 
   --font-family: aileron,sans-serif;
   --font-weight: 900;
   --font-style: normal;

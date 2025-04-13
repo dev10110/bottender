@@ -4,6 +4,7 @@ import os
 
 # DEBUG_MODE = TRUE
 
+print("here")
 
 os.environ['DUMMY_MODE'] = 'TRUE'
 os.environ['DUMMY_MODE'] = 'FALSE'

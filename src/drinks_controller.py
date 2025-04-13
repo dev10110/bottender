@@ -13,8 +13,14 @@ class DrinksController:
         for d in self.menu:
             ing.extend(d.ingredients.keys())
         ing = sorted(list(set(ing)))
+        
+        # ing = self.get_all_ingredients()
 
-        self.drinks = [ing[i] for i in range(12)]
+        print(ing)
+        
+        N = len(ing)
+
+        self.drinks = [(ing[i] if i < N else "None") for i in range(12)]
 
         
         return
@@ -40,8 +46,7 @@ class DrinksController:
             ing.extend(d.ingredients.keys())
 
         ing = sorted(list(set(ing)))
-        
-        
+
         return ing
 
     def get_ingredient_availability(self, drink):

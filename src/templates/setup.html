@@ -11,7 +11,7 @@
       <hr>
 <form action="/setup" method="POST">
 
-    {% for i in range(bot.num_motors()) %}
+    {% for i in range(bot.num_active_motors()) %}
   <div class="form-group">
     <label for="drink{{i}}">Drink {{i+1}} - [ {{ bot.get_loaded_drink(i) }} ]</label>
     <select id="drink{{i}}" name="drink{{i}}" required>

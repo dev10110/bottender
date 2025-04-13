@@ -24,7 +24,7 @@ class BotTender:
             0.71,
             0.63,
             0.64,
-            0.63/6, # WARNING CALIBRATION OFF!
+            0.63,
             0.786,
             0.787,
             0.80,
@@ -102,13 +102,11 @@ class BotTender:
 
     def get_next_drink_name(self):
         if len(self.drink_queue) >= 1:
-
             return self.find_drink(self.drink_queue[0][0]).name
         return "[Nothing Queued]"
 
     def get_next_drink_garnish(self):
         if len(self.drink_queue) >= 1:
-
             return self.find_drink(self.drink_queue[0][0]).garnish
         return "[Nothing Queued]"
 
@@ -205,6 +203,8 @@ class BotTender:
         return self.drinksController.set_drinks(drinks)
 
     def get_loaded_drink(self, motor_ind):
+        print(f"num_motors: {self.num_motors()}, num_ingred: {self.num_ingredients()}, num_active: {self.num_active_motors()}")
+        print(f"get_loaded_drink at motor_ind: {motor_ind}")
         return self.drinksController.drinks[motor_ind]
     
     def all_ingredients(self):
@@ -212,6 +212,12 @@ class BotTender:
  
     def num_motors(self):
         return len(self.motors)
+
+    def num_ingredients(self):
+        return len(self.all_ingredients())
+
+    def num_active_motors(self):
+        return min(self.num_motors(), self.num_ingredients())
         
     def validate(self, motor):
 
