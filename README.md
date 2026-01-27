@@ -39,3 +39,11 @@ flask run --host=0.0.0.0 --port=80
 ```
 
 and now navigate to `bot.tender/`
+
+## TODO: 
+- fonts
+- background that looks like the menu
+- n stages with user interaction
+- change out recipes
+- some secret menu icon ? 
+

@@ -26,14 +26,16 @@
   src: url("Pirou-Regular.otf");
 }
 
-/* @import url("https://use.typekit.net/deu0fgs.css"); */
-
 :root {
   /* --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
     "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji"; */
-  //--font-family: "HinaMincho", serif;
-  --font-family: "Montserrat", serif;
+  // --font-family: "HinaMincho", serif;
+  //--font-family: "Montserrat", serif;
+  --font-family: "Playwrite US Trad", cursive; // secondary font?
+  --font-optical-sizing: auto;
+  --font-weight: <weight>;
+  --font-style: normal;
   --line-height: 1.5;
   --font-weight: 400;
   --font-size: 16px;
@@ -154,15 +156,19 @@ small {
   --font-size: 0.875em;
 }
 
+// h1: Playwrite
+// h2: Times New Roman
+// h3: Playwrite
+// h4: Della Respira
+// h5, h6: IBM Plex Serif
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  /* --font-weight: 300;*/
-  --font-family: "Pirou"; 
-  --font-family: aileron,sans-serif;
+  --font-family: "IBM Plex Serif", serif; 
   --font-weight: 900;
   --font-style: normal;
 }
@@ -176,12 +182,6 @@ h2 {
   --font-size: 1.75rem;
   --typography-spacing-vertical: 2.625rem;
 }
-
-h3 {
-  --font-size: 1.5rem;
-  --typography-spacing-vertical: 2.25rem;
-}
-
 h4 {
   --font-size: 1.25rem;
   --typography-spacing-vertical: 1.874rem;
@@ -191,6 +191,15 @@ h5 {
   --font-size: 1.125rem;
   --typography-spacing-vertical: 1.6875rem;
 }
+
+h3 {
+    --font-family: "IBM Plex Serif", serif;
+    --color: var(--h3-color);
+    --font-weight: bold;
+    --text-transform: uppercase;
+  --font-weight: 900;
+}
+
 
 [type=checkbox],
 [type=radio] {
@@ -324,17 +333,17 @@ kbd {
 [data-theme=light],
 :root:not([data-theme=dark]) {
   color-scheme: light;
-  --background-color: #fcf5d6;         /****** BACKGROUND COLOR *******/
-  --color: #303c45;                    /****** BASIC TEXT COLOR *****/
-  --h1-color: #303c45;                   /****** HEADING COLOR *****/
-  --h2-color: #303c45;
-  --h3-color: #303c45;
-  --h4-color: #303c45;
-  --h5-color: #303c45;
-  --h6-color: #303c45;
+  --background-color: #fff9ea;         /****** BACKGROUND COLOR *******/
+  --color: #000000;                    /****** BASIC TEXT COLOR *****/
+  --h1-color: #000000;                   /****** HEADING COLOR *****/
+  --h2-color: #000000;
+  --h3-color: #000000;
+  --h4-color: #000000;
+  --h5-color: #000000;
+  --h6-color: #000000;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #303c45;                  /********** PRIMARY ***********/
+  --primary: #25435c;                  /********** PRIMARY ***********/
   --primary-hover: #ff9c8f;
   --primary-focus: #ff9c8f;
   --primary-inverse: #fff;
