@@ -1,7 +1,7 @@
 
 
 class Drink:
-    def __init__(self, id,  name, ingredients, recommended=False, sort_priority=0, garnish=None, section=None, hidden=False):
+    def __init__(self, id,  name, ingredients, recommended=False, sort_priority=0, garnish=None, section=None, hidden=False, description=""):
         self.id = id    
         self.name = name
         self.ingredients = ingredients # each ingredient is 1 oz measure
@@ -9,6 +9,7 @@ class Drink:
         self.sort_priority = sort_priority
         self.garnish = garnish
         self.hidden = hidden
+        self.description = description
 
 
 # moscow_mule = Drink("moscow_mule", "Moscow Mule", 
@@ -396,7 +397,7 @@ class Drink:
 
 
 tequila_tropical=Drink("tequila_tropical","Tequila Tropical", {"Tequila": 1.5, "Pineapple Juice": 6})
-cantarito=Drink("cantarito","Cantarito", {"Tequila": 1.5, "Orange Juice": 6})
+cantarito=Drink("cantarito","Cantarito", {"Tequila": 1.5, "Orange Juice": 6}, description="is this a cantarito")
 tequila_cranberry=Drink("tequila_cranberry","Tequila Cranberry", {"Tequila": 1.5, "Cranberry Juice": 6})
 mexican_mule=Drink("mexican_mule","Mexican Mule", {"Tequila": 1.5, "Ginger Beer": 6})
 moscow_mule=Drink("moscow_mule","Moscow Mule", {"Vodka": 1.5, "Ginger Beer": 6})
@@ -417,7 +418,7 @@ syrup_shot =Drink("syrup_shot","Syrup Shot",{"Syrup":0.5})
 vodka_gimlet=Drink("vodka_gimlet","Vodka Gimlet", {"Vodka":2, "Lemon Juice":1, "Syrup":0.25})
 vodka_cranberry=Drink("vodka_cranberry","Vodka Cranberry", {"Vodka":1.5, "Cranberry Juice":4, "Lemon Juice":0.5})
 spiced_n_pineapple=Drink("spiced_n_pineapple","Spiced & Pineapple", {"Rum":1.5, "Pineapple Juice":4, "Lemon Juice":0.25})
-pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"Vodka":2, "Pineapple Juice":4})
+pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"Vodka":2, "Pineapple Juice":4}, description="this is a description")
 
 
 # MENU = [tequila_tropical,
@@ -445,9 +446,15 @@ pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"V
 # ]
 
 
-###########
-### BOTTENDER ENTREPRENEURSHIP
-##########
+# ###########
+# ### BOTTENDER ENTREPRENEURSHIP
+# ##########
+# 
+# MENU = [tequila_tropical,
+# cantarito,
+# screwdriver,
+# pineapple_screwdriver,
+# ]
 
 MENU = [tequila_tropical,
 cantarito,

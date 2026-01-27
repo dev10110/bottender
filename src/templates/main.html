@@ -26,10 +26,7 @@
     <table>
         <tr>
             <td>
-                <hgroup>
                 <h3>Suprise Me</h3>
-                <h4></h4>
-                </hgroup>
               </td>
 
             <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
@@ -38,10 +35,9 @@
         {% if d.hidden != True %}
         <tr>
           <td>
-              <hgroup>
               <h3>{% if d.recommended %} • {% endif %}{{ d.name }}</h3>
-              <h4>{{ ', '.join(d.ingredients.keys()) }}</h4>
-              </hgroup>
+              <h4 class="drink-description">{{ d.description }}</h4>
+              <h4 class="drink-ingredients">{{ ', '.join(d.ingredients.keys()) }}</h4>
             </td>
           
           <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
