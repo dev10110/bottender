@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Menu {% endblock %}
+
+
+{% block content %}
+<div class="icon" id="robotIcon" aria-label="Menu"></div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+  const icon = document.getElementById("robotIcon");
+
+  icon.addEventListener("click", () => {
+    icon.classList.toggle("active");
+  });
+</script>
+
+<style>
+  body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui, sans-serif;
+  }
+
+  .icon {
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    /* robot icon */
+    background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/robot.svg");
+  }
+
+  /* Desktop hover */
+  @media (hover: hover) {
+    .icon:hover {
+      background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/list.svg");
+    }
+  }
+
+  /* iPad / touch (tap toggles) */
+  .icon.active {
+    background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/list.svg");
+  }
+</style>
+{% endblock %}

@@ -24,6 +24,10 @@ def gif_test():
     return render_template("gif.html")
 
 
+@app.route("/hover_test")
+def hover_test():
+    return render_template("hover.html")
+
 
 @app.route("/")
 def main_page():
