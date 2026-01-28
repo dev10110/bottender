@@ -1,5 +1,3 @@
-
-
 from recipes import MENU, SECTIONS
 
 
@@ -13,16 +11,15 @@ class DrinksController:
         for d in self.menu:
             ing.extend(d.ingredients.keys())
         ing = sorted(list(set(ing)))
-        
+
         # ing = self.get_all_ingredients()
 
         print(ing)
-        
+
         N = len(ing)
 
         self.drinks = [(ing[i] if i < N else "None") for i in range(12)]
 
-        
         return
 
     def set_drinks(self, drinks):
@@ -34,11 +31,10 @@ class DrinksController:
 
         for i in range(len(self.drinks)):
             self.drinks[i] = drinks[i]
-        
+
         return True
 
     def get_all_ingredients(self):
-        
 
         ing = ["None"]
 
@@ -53,21 +49,20 @@ class DrinksController:
         count = 0
         for ing in drink.ingredients:
             if ing in self.drinks:
-                count +=1
+                count += 1
 
-        return count/len(drink.ingredients)
-
+        return count / len(drink.ingredients)
 
     def get_menu(self):
 
         # return sorted(self.menu, key=lambda d: self.get_ingredient_availability(d), reverse=True)
         items = sorted(self.menu, key=lambda d: d.sort_priority, reverse=True)
-        
+
         return items
 
         # non_honey_items = [i for i in items if i.id != "honey_shot"]
 
-        #return non_honey_items
+        # return non_honey_items
 
     def get_sections(self):
         return SECTIONS
@@ -76,4 +71,3 @@ class DrinksController:
         items = self.get_menu()
 
         return [item for item in items if item.section == section]
-

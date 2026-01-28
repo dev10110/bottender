@@ -1,59 +1,59 @@
 {% extends "base.html" %}
-{% block title %} Drinks Queue {% endblock %}
-
-
-
+{% block title %}Drinks Queue{% endblock %}
 {% block content %}
-<div class="container">
-    <section>
-      
-      <h3>Up Next: {{ bot.get_next_drink_name() }} </h3>
-
-      <img id="emptyglass" src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}"/> 
-      <img id="fillgif" hidden src="{{ url_for('static', filename='gifs/fill_gif.gif') }}"/> 
-      <img id="filledglass" hidden src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}"/> 
-
-      </section>
-      <section>
-      {% if bot.get_next_drink_uuid() %}
-      
-      <h4>{{ bot.get_next_drink_garnish() }} </h4>
-
-        <a  id="release" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release();">Pour</a>
-        <a  id="skip" href="/skip/{{bot.get_next_drink_uuid()}}" class="btn btn-block btn-lg btn-secondary outline" role="button">Skip</a>
-        <a  id="next" hidden href="#" class="btn btn-block btn-lg btn-primary" role="button"  onclick="reloadPage();">Next Drink</a>
-        <a href="/" class="btn btn-block btn-lg btn-secondary outline" role="button">Add another drink</a>
-        
-        
-      
-      {% else %}
-      <p>
-        <a href="/" class="btn btn-block btn-lg btn-primary" role="button">Choose a drink</a>
-      </p>
-
-      {% endif %}
-
-     <!-- 
-        <a  id="honey" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release_honey();">Pour Extra Honey Shot</a>
-      -->
-
-    </section>
-    <section>
-      <h3>In the Queue: </h3>
-      <ol>
-      {% for drink in bot.drink_queue %}
-        <li> {{bot.find_drink(drink[0]).name}}</li>
-      {% endfor %}
-    </ol>
-    </section>
-</div>
-
+    <div class="container">
+        <section>
+            <h3>Up Next: {{ bot.get_next_drink_name() }}</h3>
+            <img id="emptyglass"
+                 src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}" />
+            <img id="fillgif"
+                 hidden
+                 src="{{ url_for('static', filename='gifs/fill_gif.gif') }}" />
+            <img id="filledglass"
+                 hidden
+                 src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}" />
+        </section>
+        <section>
+            {% if bot.get_next_drink_uuid() %}
+                <h4>{{ bot.get_next_drink_garnish() }}</h4>
+                <a id="release"
+                   href="#"
+                   class="btn btn-block btn-lg btn-primary"
+                   role="button"
+                   aria-busy="false"
+                   onclick="release();">Pour</a>
+                <a id="skip"
+                   href="/skip/{{ bot.get_next_drink_uuid() }}"
+                   class="btn btn-block btn-lg btn-secondary outline"
+                   role="button">Skip</a>
+                <a id="next"
+                   hidden
+                   href="#"
+                   class="btn btn-block btn-lg btn-primary"
+                   role="button"
+                   onclick="reloadPage();">Next Drink</a>
+                <a href="/"
+                   class="btn btn-block btn-lg btn-secondary outline"
+                   role="button">Add another drink</a>
+            {% else %}
+                <p>
+                    <a href="/" class="btn btn-block btn-lg btn-primary" role="button">Choose a drink</a>
+                </p>
+            {% endif %}
+            <!--
+        <a id="honey" href="#" class="btn btn-block btn-lg btn-primary" role="button" aria-busy="false" onclick="release_honey();">Pour Extra Honey Shot</a>
+-->
+        </section>
+        <section>
+            <h3>In the Queue:</h3>
+            <ol>
+                {% for drink in bot.drink_queue %}<li>{{ bot.find_drink(drink[0]).name }}</li>{% endfor %}
+            </ol>
+        </section>
+    </div>
 {% endblock %}
- 
 {% block script %}
-
-<script>
-
+    <script>
   function release(){
 
     // var uuid = {{ bot.get_next_drink_uuid() }} 
@@ -159,6 +159,5 @@
     window.location.reload();
   }
 
-</script>
-
+    </script>
 {% endblock %}

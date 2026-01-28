@@ -1,12 +1,9 @@
 {% extends "base.html" %}
-{% block title %} Menu {% endblock %}
-
-
-
+{% block title %}Menu{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-    <!-- {% for d in bot.all_drinks() %} 
+    <div class="container">
+        <div class="row">
+            <!-- {% for d in bot.all_drinks() %}
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">  
         <article>
             <h3>{{ d.name }}</h3>
@@ -21,39 +18,37 @@
             </footer>
         </article>
     </div>
-    {% endfor %} -->
-
-    <table>
-        <tr>
-            <td>
-              </td>
-
-            <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
-          </tr>
-          </table>
-
-
+{% endfor %} -->
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;">
+                        <a href="/pour/{{ bot.random_drink_id().id }}/{{ uuid }}" role="button">I'm Feeling Lucky</a>
+                    </td>
+                </tr>
+            </table>
             {% for sec in bot.all_sections() %}
-          <div style="margin-bottom: 2rem;"></div>
-            <h2> {{ sec }} </h2>
-
-          <table>
-        {% for d in bot.all_drinks_in_section(sec) %}
-        {% if d.hidden != True %}
-        <tr>
-          <td>
-              <h3>{% if d.recommended %} • {% endif %}{{ d.name }}</h3>
-              <h4 class="drink-description">{{ d.description }}</h4>
-            </td>
-          
-          <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-      </table>
-
-      {% endfor %}
-</div>
-</div>
-
+                <div style="margin-bottom: 2rem;"></div>
+                <h2>{{ sec }}</h2>
+                <table>
+                    {% for d in bot.all_drinks_in_section(sec) %}
+                        {% if d.hidden != True %}
+                            <tr>
+                                <td>
+                                    <h3>
+                                        {% if d.recommended %}•{% endif %}
+                                        {{ d.name }}
+                                    </h3>
+                                    <h4 class="drink-description">{{ d.description }}</h4>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="/pour/{{ d.id }}/{{ uuid }}" role="button">Order</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
