@@ -396,29 +396,29 @@ class Drink:
 
 
 
-tequila_tropical=Drink("tequila_tropical","Tequila Tropical", {"Tequila": 1.5, "Pineapple Juice": 6})
-cantarito=Drink("cantarito","Cantarito", {"Tequila": 1.5, "Orange Juice": 6}, description="is this a cantarito")
-tequila_cranberry=Drink("tequila_cranberry","Tequila Cranberry", {"Tequila": 1.5, "Cranberry Juice": 6})
-mexican_mule=Drink("mexican_mule","Mexican Mule", {"Tequila": 1.5, "Ginger Beer": 6})
-moscow_mule=Drink("moscow_mule","Moscow Mule", {"Vodka": 1.5, "Ginger Beer": 6})
-screwdriver=Drink("screwdriver","Screwdriver", {"Vodka": 1.5, "Orange Juice": 6})
-vodka_cranberry=Drink("vodka_cranberry","Vodka Cranberry", {"Vodka": 1.5, "Cranberry Juice": 4})
-almost_cosmo=Drink("almost_cosmo","Almost Cosmo", {"Vodka": 1.5, "Cranberry Juice": 3,"Orange Juice": 3})
-malibu_bay_breeze=Drink("malibu_bay_breeze","Malibu Bay Breeze", {"Malibu": 1.5, "Cranberry Juice": 3, "Pineapple Juice": 3})
-malibu_pineapple=Drink("malibu_pineapple","Malibu Pineapple", {"Malibu": 1.5, "Pineapple Juice": 6})
-malibu_cranberry=Drink("malibu_cranberry","Malibu Cranberry", {"Malibu": 1.5, "Cranberry Juice": 6})
-gold_rush=Drink("gold_rush","Gold Rush", {"Bourbon": 2, "Syrup": 1, "Lemon Juice":0.75})
-old_fashioned_paloma=Drink("old_fashioned_paloma","Old Fashioned Paloma",{"Bourbon":1.5, "Grapefruit Soda":4,"Syrup":0.5,"Lemon Juice":0.25})
-old_fashioned=Drink("old_fashioned","Old Fashioned",{"Bourbon":1.5,  "Syrup":0.5})
-classic_paloma=Drink("classic_paloma","Classic Paloma",{"Tequila":2, "Grapefruit Soda":3.5,"Syrup":0.5})
-greyhound=Drink("greyhound","Greyhound",{"Vodka":2, "Grapefruit Soda":3.5,"Syrup":0.5})
-pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver",{"Vodka":2,"Pineapple Juice":4})
-the_joseph_v2=Drink("the_joseph_v2","The Joseph V2",{"Pineapple Juice":4.0, "Syrup":1.0})
-syrup_shot =Drink("syrup_shot","Syrup Shot",{"Syrup":0.5})
-vodka_gimlet=Drink("vodka_gimlet","Vodka Gimlet", {"Vodka":2, "Lemon Juice":1, "Syrup":0.25})
-vodka_cranberry=Drink("vodka_cranberry","Vodka Cranberry", {"Vodka":1.5, "Cranberry Juice":4, "Lemon Juice":0.5})
-spiced_n_pineapple=Drink("spiced_n_pineapple","Spiced & Pineapple", {"Rum":1.5, "Pineapple Juice":4, "Lemon Juice":0.25})
-pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"Vodka":2, "Pineapple Juice":4}, description="this is a description")
+# tequila_tropical=Drink("tequila_tropical","Tequila Tropical", {"Tequila": 1.5, "Pineapple Juice": 6})
+# cantarito=Drink("cantarito","Cantarito", {"Tequila": 1.5, "Orange Juice": 6}, description="is this a cantarito")
+# tequila_cranberry=Drink("tequila_cranberry","Tequila Cranberry", {"Tequila": 1.5, "Cranberry Juice": 6})
+# mexican_mule=Drink("mexican_mule","Mexican Mule", {"Tequila": 1.5, "Ginger Beer": 6})
+# moscow_mule=Drink("moscow_mule","Moscow Mule", {"Vodka": 1.5, "Ginger Beer": 6})
+# screwdriver=Drink("screwdriver","Screwdriver", {"Vodka": 1.5, "Orange Juice": 6})
+# vodka_cranberry=Drink("vodka_cranberry","Vodka Cranberry", {"Vodka": 1.5, "Cranberry Juice": 4})
+# almost_cosmo=Drink("almost_cosmo","Almost Cosmo", {"Vodka": 1.5, "Cranberry Juice": 3,"Orange Juice": 3})
+# malibu_bay_breeze=Drink("malibu_bay_breeze","Malibu Bay Breeze", {"Malibu": 1.5, "Cranberry Juice": 3, "Pineapple Juice": 3})
+# malibu_pineapple=Drink("malibu_pineapple","Malibu Pineapple", {"Malibu": 1.5, "Pineapple Juice": 6})
+# malibu_cranberry=Drink("malibu_cranberry","Malibu Cranberry", {"Malibu": 1.5, "Cranberry Juice": 6})
+# gold_rush=Drink("gold_rush","Gold Rush", {"Bourbon": 2, "Syrup": 1, "Lemon Juice":0.75})
+# old_fashioned_paloma=Drink("old_fashioned_paloma","Old Fashioned Paloma",{"Bourbon":1.5, "Grapefruit Soda":4,"Syrup":0.5,"Lemon Juice":0.25})
+# old_fashioned=Drink("old_fashioned","Old Fashioned",{"Bourbon":1.5,  "Syrup":0.5})
+# classic_paloma=Drink("classic_paloma","Classic Paloma",{"Tequila":2, "Grapefruit Soda":3.5,"Syrup":0.5})
+# greyhound=Drink("greyhound","Greyhound",{"Vodka":2, "Grapefruit Soda":3.5,"Syrup":0.5})
+# pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver",{"Vodka":2,"Pineapple Juice":4})
+# the_joseph_v2=Drink("the_joseph_v2","The Joseph V2",{"Pineapple Juice":4.0, "Syrup":1.0})
+# syrup_shot =Drink("syrup_shot","Syrup Shot",{"Syrup":0.5})
+# vodka_gimlet=Drink("vodka_gimlet","Vodka Gimlet", {"Vodka":2, "Lemon Juice":1, "Syrup":0.25})
+# vodka_cranberry=Drink("vodka_cranberry","Vodka Cranberry", {"Vodka":1.5, "Cranberry Juice":4, "Lemon Juice":0.5})
+# spiced_n_pineapple=Drink("spiced_n_pineapple","Spiced & Pineapple", {"Rum":1.5, "Pineapple Juice":4, "Lemon Juice":0.25})
+# pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"Vodka":2, "Pineapple Juice":4}, description="this is a description")
 
 
 # MENU = [tequila_tropical,
@@ -456,8 +456,171 @@ pineapple_screwdriver=Drink("pineapple_screwdriver","Pineapple Screwdriver", {"V
 # pineapple_screwdriver,
 # ]
 
-MENU = [tequila_tropical,
-cantarito,
-screwdriver,
-pineapple_screwdriver,
+
+# #####################################
+# ### BOTTENDER House Warming Jan 2026
+# #####################################
+
+dark_n_stormy = Drink(
+    id = "dark_n_stormy",
+    name = "Dark 'n Stormy", 
+    ingredients = {
+        "Ginger Beer": 4.0, 
+        "Rum": 2.0
+    }, 
+    description=""
+)
+manhattan = Drink( 
+    id="manhattan", 
+    name = "Manhattan", 
+    ingredients = {
+        "Bourbon": 2.0, 
+        "Vermouth": 1.0
+    }, 
+    description = ""
+)
+
+smoky_paloma = Drink( 
+    id = "smoky_paloma", 
+    name = "Smoky Paloma", 
+    ingredients = {
+        "Mezcal": 2.0, 
+        "Grapefruit Soda": 4.0, 
+        "Lime": 0.5,
+    }
+)
+
+midnight_oil = Drink( 
+    id = "midnight_oil", 
+    name = "Midnight Oil", 
+    ingredients = {
+        "Rum": 2.0, 
+        "Cold Brew": 2.0
+    }
+)
+
+orchard_ember = Drink( 
+    id = "orchard_ember", 
+    name = "Orchard Ember", 
+    ingredients = {
+        "Bourbon": 2.0, 
+        "Cider": 3.0,
+        "Lime": 0.5,
+    }
+)
+
+spicy_mezcalita = Drink( 
+    id= "spicy_mezcalita", 
+    name = "Spicy Mezcalita", 
+    ingredients = {
+        "Mezcal": 2.0, 
+        "Pineapple Juice": 2.0, 
+        "Lime": 0.5, 
+    }
+)
+
+stone_fence = Drink( 
+    id = "stone_fence", 
+    name = "Stone Fence", 
+    ingredients = {
+        "Bourbon": 2.0, 
+        "Cider": 4.0
+    }
+)
+
+mezcal_mule = Drink(
+    id = "mezcal_mule", 
+    name = "Mezcal Mule", 
+    ingredients = {
+        "Mezcal": 2.0, 
+        "Ginger Beer": 4.0, 
+        "Lime": 0.5
+    }
+)
+
+coffee_cider = Drink( 
+    id = "coffee_cider", 
+    name = "Coffee Cider", 
+    ingredients = {
+        "Rum": 1.5, 
+        "Cold Brew": 2.0, 
+        "Cider": 2.0
+    }
+)
+
+rum_runner = Drink( 
+    id = "rum_runner", 
+    name = "Rum Runner",
+    ingredients = {
+        "Rum": 2.0, 
+        "Pineapple Juice": 2.0, 
+        "Lime": 0.75,
+        "Honey": 0.5
+    }
+)
+
+bitter_apple = Drink( 
+    id = "bitter_apple", 
+    name = "Bitter Apple", 
+    ingredients = {
+        "Vermouth": 1.5, 
+        "Cider": 2.0,
+        "Ginger Beer": 2.0
+    }
+)
+
+oaxacan_morning = Drink( 
+    id = "oaxacan_morning", 
+    name = "Oaxacan Morning", 
+    ingredients = {
+        "Mezcal": 1.5, 
+        "Cold Brew": 1.5, 
+        "Pineapple Juice": 1.5,
+    }
+)
+
+ginger_fizz = Drink( 
+    id = "ginger_fizz", 
+    name = "Ginger Fizz", 
+    ingredients = {
+        "Cider": 3.0, 
+        "Ginger Beer": 3.0, 
+        "Lime": 0.5,
+    }
+)
+
+tropical_wakeup = Drink(
+    id = "tropical_wakeup", 
+    name = "Tropical Wakeup", 
+    ingredients = {
+        "Pineapple Juice": 3.0, 
+        "Cold Brew": 2.0, 
+        "Honey": 0.5,
+    }
+)
+
+pomelo_sparkler = Drink( 
+    id = "pomelo_sparkler", 
+    name = "Pomelo Sparkler", 
+    ingredients = {
+        "Grapefruit Soda": 5.0, 
+    }
+)
+
+MENU = [
+dark_n_stormy,
+manhattan ,
+smoky_paloma,
+midnight_oil ,
+orchard_ember ,
+spicy_mezcalita,
+stone_fence,
+mezcal_mule,
+coffee_cider,
+rum_runner ,
+bitter_apple,
+oaxacan_morning,
+ginger_fizz ,
+tropical_wakeup,
+pomelo_sparkler
 ]
