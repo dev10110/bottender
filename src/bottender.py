@@ -3,13 +3,16 @@ import uuid
 import random
 
 dummy_mode = False
-if os.environ.get("DUMMY_MODE") == "TRUE":
+print("DUMMY_MODE: ", os.environ.get("DUMMY_MODE"))
+if os.environ.get("DUMMY_MODE") == "true":
     print("SETTING DUMMY MODE TRUE")
     dummy_mode=True
     
+print(f"using dummy_mode = {dummy_mode}")
 if not dummy_mode:
     import RPi.GPIO as GPIO
     GPIO.setwarnings(False)
+
 import time
 
 

@@ -1,7 +1,7 @@
 import os
 
 dummy_mode = False
-if os.environ.get("DUMMY_MODE") == "TRUE":
+if os.environ.get("DUMMY_MODE") == "true":
     dummy_mode=True
 
 if not dummy_mode:
