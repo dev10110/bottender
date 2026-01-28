@@ -72,7 +72,6 @@ class BotTender:
 
 
     def generate_uuid(self):
-        
         return uuid.uuid4().hex
 
     
@@ -191,16 +190,19 @@ class BotTender:
     def which_motor(self, ing):
         return self.drinksController.drinks.index(ing)
 
-
-
     def find_drink(self, drink_id):
         for d in self.all_drinks():
             if d.id == drink_id:
                 return d
 
-    
+    def all_sections(self):
+        return self.drinksController.get_sections()
+
     def all_drinks(self):
         return self.drinksController.get_menu()
+
+    def all_drinks_in_section(self, section):
+        return self.drinksController.get_section_menu(section)
 
     def set_drinks(self, drinks):
         return self.drinksController.set_drinks(drinks)

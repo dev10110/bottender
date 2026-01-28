@@ -15,8 +15,8 @@
 
 	{% for i in  range(bot.num_motors()) %}
 	<section class="container">
-			<h2> Motor {{i + 1}}  </h2>
-	<h3>{{ bot.get_loaded_drink(i) }}</h3>
+			<h3> Motor {{i + 1}}  </h3>
+	<h4>{{ bot.get_loaded_drink(i) }}</h4>
 		<p>
 			{% set type_F = "outline" if bot.motors[i].get_state() == 1 else "" %}
 			{% set type_S = "outline" if bot.motors[i].get_state() == 0 else "" %}

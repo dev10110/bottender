@@ -1,7 +1,7 @@
 
 
 class Drink:
-    def __init__(self, id,  name, ingredients, recommended=False, sort_priority=0, garnish=None, section=None, hidden=False, description=""):
+    def __init__(self, id,  name, ingredients, recommended=False, sort_priority=0, garnish=None, section=None, hidden=False, secret_menu = False, description=""):
         self.id = id    
         self.name = name
         self.ingredients = ingredients # each ingredient is 1 oz measure
@@ -10,6 +10,8 @@ class Drink:
         self.garnish = garnish
         self.hidden = hidden
         self.description = description
+        self.secret_menu = secret_menu
+        self.section = section
 
 
 # moscow_mule = Drink("moscow_mule", "Moscow Mule", 
@@ -468,7 +470,8 @@ dark_n_stormy = Drink(
         "Ginger Beer": 4.0, 
         "Rum": 2.0
     }, 
-    description=""
+    description = "Rum, ginger beer, and lime", 
+    section = "Classics"
 )
 manhattan = Drink( 
     id="manhattan", 
@@ -477,7 +480,8 @@ manhattan = Drink(
         "Bourbon": 2.0, 
         "Vermouth": 1.0
     }, 
-    description = ""
+    description = "Bourbon, vermouth, cherry, and bitters",
+    section = "Classics"
 )
 
 smoky_paloma = Drink( 
@@ -487,7 +491,9 @@ smoky_paloma = Drink(
         "Mezcal": 2.0, 
         "Grapefruit Soda": 4.0, 
         "Lime": 0.5,
-    }
+    },
+    description = "Mezcal, grapefruit soda, and lime",
+    section = "Classics"
 )
 
 midnight_oil = Drink( 
@@ -496,7 +502,9 @@ midnight_oil = Drink(
     ingredients = {
         "Rum": 2.0, 
         "Cold Brew": 2.0
-    }
+    },
+    description = "Dark rum, cold brew coffee, honey, and bitters",
+    section = "Experiments"
 )
 
 orchard_ember = Drink( 
@@ -506,17 +514,21 @@ orchard_ember = Drink(
         "Bourbon": 2.0, 
         "Cider": 3.0,
         "Lime": 0.5,
-    }
+    }, 
+    description = "Bourbon, spiced apple cider, fresh ginger, and lime", 
+    section = "Experiments"
 )
 
 spicy_mezcalita = Drink( 
     id= "spicy_mezcalita", 
-    name = "Spicy Mezcalita", 
+    name = "Spicy Pina Mezcalita", 
     ingredients = {
         "Mezcal": 2.0, 
         "Pineapple Juice": 2.0, 
         "Lime": 0.5, 
-    }
+    }, 
+    description = "Mezcal, pineapple juice, lime, and jalapeno", 
+    section = "Experiments"
 )
 
 stone_fence = Drink( 
@@ -525,7 +537,10 @@ stone_fence = Drink(
     ingredients = {
         "Bourbon": 2.0, 
         "Cider": 4.0
-    }
+    }, 
+    description = "Bourbon, spiced apple cider, and bitters", 
+    secret_menu = True,
+    section = "Secret"
 )
 
 mezcal_mule = Drink(
@@ -535,7 +550,10 @@ mezcal_mule = Drink(
         "Mezcal": 2.0, 
         "Ginger Beer": 4.0, 
         "Lime": 0.5
-    }
+    }, 
+    description = "Mezcal, ginger beer, lime, and fresh ginger",
+    secret_menu = True, 
+    section = "Secret"
 )
 
 coffee_cider = Drink( 
@@ -545,7 +563,10 @@ coffee_cider = Drink(
         "Rum": 1.5, 
         "Cold Brew": 2.0, 
         "Cider": 2.0
-    }
+    }, 
+    description = "Rum, cold brew, cider, and some cinnamon", 
+    secret_menu = True,
+    section = "Secret"
 )
 
 rum_runner = Drink( 
@@ -556,7 +577,10 @@ rum_runner = Drink(
         "Pineapple Juice": 2.0, 
         "Lime": 0.75,
         "Honey": 0.5
-    }
+    }, 
+    description = "Rum, pineapple juice, lime, and honey", 
+    secret_menu = True,
+    section = "Secret"
 )
 
 bitter_apple = Drink( 
@@ -566,7 +590,10 @@ bitter_apple = Drink(
         "Vermouth": 1.5, 
         "Cider": 2.0,
         "Ginger Beer": 2.0
-    }
+    }, 
+    description = "Vermouth, spiced apple cider, ginger beer, and bitters", 
+    secret_menu = True,
+    section = "Secret"
 )
 
 oaxacan_morning = Drink( 
@@ -576,7 +603,10 @@ oaxacan_morning = Drink(
         "Mezcal": 1.5, 
         "Cold Brew": 1.5, 
         "Pineapple Juice": 1.5,
-    }
+    }, 
+    description = "Mezcal, cold brew, pineapple juice", 
+    secret_menu = True,
+    section = "Secret"
 )
 
 ginger_fizz = Drink( 
@@ -586,7 +616,9 @@ ginger_fizz = Drink(
         "Cider": 3.0, 
         "Ginger Beer": 3.0, 
         "Lime": 0.5,
-    }
+    }, 
+    description = "Spiced apple cider, ginger beer, and lime", 
+    section = "Mocktails"
 )
 
 tropical_wakeup = Drink(
@@ -596,7 +628,9 @@ tropical_wakeup = Drink(
         "Pineapple Juice": 3.0, 
         "Cold Brew": 2.0, 
         "Honey": 0.5,
-    }
+    }, 
+    description = "Pineapple juice, cold brew, and honey",
+    section = "Mocktails"
 )
 
 pomelo_sparkler = Drink( 
@@ -604,7 +638,9 @@ pomelo_sparkler = Drink(
     name = "Pomelo Sparkler", 
     ingredients = {
         "Grapefruit Soda": 5.0, 
-    }
+    }, 
+    description = "Grapefruit soda, and a spritz of lime", 
+    section = "Mocktails"
 )
 
 MENU = [
@@ -623,4 +659,11 @@ oaxacan_morning,
 ginger_fizz ,
 tropical_wakeup,
 pomelo_sparkler
+]
+
+SECTIONS = [
+    "Classics", 
+    "Experiments", 
+    "Mocktails", 
+    "Secret"
 ]

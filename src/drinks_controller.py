@@ -1,6 +1,6 @@
 
 
-from recipes import MENU
+from recipes import MENU, SECTIONS
 
 
 class DrinksController:
@@ -69,4 +69,11 @@ class DrinksController:
 
         #return non_honey_items
 
+    def get_sections(self):
+        return SECTIONS
+
+    def get_section_menu(self, section):
+        items = self.get_menu()
+
+        return [item for item in items if item.section == section]
 

@@ -56,23 +56,16 @@
   --mark-color: #543a26;
 }
 
-// h1: Playwrite
-// h2: Times New Roman
-// h3: Playwrite
-// h4: Della Respira
-// h5, h6: IBM Plex Serif
-
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+h5, h6 {
   --font-weight: normal;
 }
 
 h1 {
-  --font-size: 2rem;
+  --font-size: 2.25rem;
   --font-family: var(--font-family-bottender);
   --font-weight: normal;
   --typography-spacing-vertical: 1rem;
@@ -80,13 +73,13 @@ h1 {
 
 h2 {
   --font-size: 1.75rem;
-  --font-family: "Times New Roman", Times, serif;
+  --font-family: "Playwrite US Trad", cursive;
   --font-weight: normal;
   --typography-spacing-vertical: 1rem;
 }
 
 h3 {
-  --font-size: 1.5rem;
+  --font-size: 1.25rem;
   --font-family: "IBM Plex Serif", serif;
     color: var(--h3-color);
     text-transform: uppercase;
@@ -95,14 +88,14 @@ h3 {
 }
 
 h4 {
-  --font-size: 1rem;
+  --font-size: 1.0rem;
   --font-family: "Della Respira", sans-serif;
   --font-weight: normal;
   --typography-spacing-vertical: 1rem;
 }
 
 h5 {
-  --font-size: 1.125rem;
+  --font-size: 0.75rem;
   --font-weight: normal;
   --typography-spacing-vertical: 1rem;
 }
@@ -110,10 +103,10 @@ h5 {
 
 .drink-description {
   --font-family: var(--font-family-drink-description);
+  font-style: italic;
 }
 .drink-ingredients {
   --font-family: var(--font-family-drink-description);
-  font-style: italic;
 }
 
 

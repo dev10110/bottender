@@ -26,18 +26,24 @@
     <table>
         <tr>
             <td>
-                <h3>Suprise Me</h3>
               </td>
 
             <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
           </tr>
-        {% for d in bot.all_drinks() %}
+          </table>
+
+
+            {% for sec in bot.all_sections() %}
+          <div style="margin-bottom: 2rem;"></div>
+            <h2> {{ sec }} </h2>
+
+          <table>
+        {% for d in bot.all_drinks_in_section(sec) %}
         {% if d.hidden != True %}
         <tr>
           <td>
               <h3>{% if d.recommended %} • {% endif %}{{ d.name }}</h3>
               <h4 class="drink-description">{{ d.description }}</h4>
-              <h4 class="drink-ingredients">{{ ', '.join(d.ingredients.keys()) }}</h4>
             </td>
           
           <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
@@ -45,7 +51,8 @@
         {% endif %}
         {% endfor %}
       </table>
-    
+
+      {% endfor %}
 </div>
 </div>
 
