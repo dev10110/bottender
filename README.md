@@ -47,3 +47,5 @@ and now navigate to `bot.tender/`
 - change out recipes
 - some secret menu icon ? 
 
+https://www.flaticon.com/free-icon-font/user-robot_10461966?page=1&position=1&term=robot&origin=search&related_id=10461966
+https://www.flaticon.com/free-animated-icon/menu_14385032?term=menu&page=1&position=23&origin=search&related_id=14385032
