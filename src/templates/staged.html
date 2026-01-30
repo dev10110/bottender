@@ -1,20 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="container">
-        <section>
-            <h3>Preparing: {{ drink.name }}</h3>
-            <h4>{{ stage.instruction }}</h4>
-            <a id="release"
-               href="#"
-               onclick="release()"
-               class="btn btn-block btn-lg btn-primary"
-               role="button">{{
+<div class="container">
+    <section>
+        <h3>Preparing: {{ drink.name }}</h3>
+        <h4>{{ stage.instruction }}</h4>
+        <a id="release" href="#" onclick="release()" class="btn btn-block btn-lg btn-primary" role="button">{{
             stage.button_text }}</a>
-            <a href="/drink_queue"
-               class="btn btn-block btn-lg btn-secondary outline">Back to Queue</a>
-        </section>
-    </div>
-    <script>
+    </section>
+</div>
+<script>
     function release() {
         console.log("Releasing stage {{ stage_index }} for drink {{ uuid }}");
 
@@ -27,9 +21,13 @@
                 "content-type": "application/json"
             })
         }).then(function (response) {
+            console.log("Received response for stage release:", response);
 
-            // console.log("Received response for stage release:", response);
-
+            if (response.redirected) {
+                console.log("Redirecting to:", response.url);
+                window.location.href = response.url;
+                return;
+            }
             if (response.status !== 200) {
                 console.log("STATUS IS NOT 200")
                 return;
@@ -57,5 +55,5 @@
         //     console.error("Error:", error);
         // });
     }   
-    </script>
+</script>
 {% endblock %}
