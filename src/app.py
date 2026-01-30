@@ -108,7 +108,7 @@ def show_drink_queue():
 def staged_start(uuid):
     # redirect to stage 0
     if bot.get_next_drink_uuid() != uuid:
-        return redirect("/drink_queue")
+        return redirect("/")
     return redirect(f"/staged/{uuid}/0")
 
 
@@ -116,18 +116,14 @@ def staged_start(uuid):
 def staged_page(uuid, stage_id):
     # render a stage for the next queued drink
     if bot.get_next_drink_uuid() != uuid:
-        return redirect("/drink_queue")
+        return redirect("/")
 
     drink_id = bot.drink_queue[0][0]
     d = bot.find_drink(drink_id)
     if not d:
-        return redirect("/drink_queue")
-
-    stages = getattr(d, "stages", None)
-    if not stages:
-        # fallback: pour whole drink and return home
-        bot.pour_parallel_next()
         return redirect("/")
+
+    stages = d.stages
 
     if stage_id < 0 or stage_id >= len(stages):
         return redirect("/")

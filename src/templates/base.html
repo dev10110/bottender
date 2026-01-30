@@ -20,9 +20,8 @@
                  alt="Sidebar image">
         </aside>
         <main class="content container">
-            <a href="{{ url_for("main_page")}}">
+            <a href="{{ url_for("main_page") }}">
                 <h1>BotTender</h1>
-                <h4>LD Bars</h4>
             </a>
             <div class="container">
                 {% for message in get_flashed_messages() %}<mark>{{ message }}</mark>{% endfor %}
