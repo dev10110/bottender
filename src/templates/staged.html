@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <section>
+            <h3>Preparing: {{ drink.name }}</h3>
+            <h4>{{ stage.instruction }}</h4>
+            <a id="release"
+               href="#"
+               onclick="release()"
+               class="btn btn-block btn-lg btn-primary"
+               role="button">{{
+            stage.button_text }}</a>
+            <a href="/drink_queue"
+               class="btn btn-block btn-lg btn-secondary outline">Back to Queue</a>
+        </section>
+    </div>
+    <script>
+    function release() {
+        console.log("Releasing stage {{ stage_index }} for drink {{ uuid }}");
+
+        fetch(`${window.origin}/pour_stage/{{ uuid }}/{{ stage_index }}`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify("release"),
+            cache: "no-cache",
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        }).then(function (response) {
+
+            // console.log("Received response for stage release:", response);
+
+            if (response.status !== 200) {
+                console.log("STATUS IS NOT 200")
+                return;
+            }
+        });
+
+
+        //   release_button.innerText = "Done!"
+        //   release_button.setAttribute('aria-busy', "false")
+        //   document.getElementById("emptyglass").hidden = true;
+        //   document.getElementById("fillgif").hidden = true;
+        //   document.getElementById("filledglass").hidden = false;
+        // 
+        //   document.getElementById("next").hidden=false;
+
+
+        // fetch("/release_stage/{{ uuid }}/{{ stage_index }}", {
+        //     method: "POST",
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log("Stage released:", data);
+        // })
+        // .catch((error) => {
+        //     console.error("Error:", error);
+        // });
+    }   
+    </script>
+{% endblock %}

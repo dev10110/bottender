@@ -1,4 +1,4 @@
-from drink import Drink, DrinkStage  
+from drink import Drink, DrinkStage
 
 # moscow_mule = Drink("moscow_mule", "Moscow Mule",
 #     {"Vodka": 2,
@@ -451,23 +451,23 @@ dark_n_stormy = Drink(
     name="Dark 'n Stormy",
     description="Rum, ginger beer, and lime",
     section="Classics",
-    stages = [
+    stages=[
         DrinkStage(
-            instruction="Place the cup.", 
-            pours={"Ginger Beer": 4.0}, 
-            button = "Start pouring"
-        ), 
-        DrinkStage( 
-            instruction = "Add some ice, and place back the cup.",
-            pours={"Rum": 2.0},
-            button = "Continue"
-        ), 
-        DrinkStage(
-            instruction="Garnish with a lime wedge.", 
-            pours={}, 
-            button = "Back to menu"
+            instruction="Place the cup.",
+            pours={"Ginger Beer": 4.0},
+            button_text="Start pouring",
         ),
-    ]
+        DrinkStage(
+            instruction="Add some ice, and place back the cup.",
+            pours={"Rum": 2.0},
+            button_text="Continue",
+        ),
+        DrinkStage(
+            instruction="Garnish with a lime wedge.",
+            pours={},
+            button_text="Back to menu",
+        ),
+    ],
 )
 # manhattan = Drink(
 #     id="manhattan",
@@ -476,7 +476,7 @@ dark_n_stormy = Drink(
 #     description="Bourbon, vermouth, cherry, and bitters",
 #     section="Classics",
 # )
-# 
+#
 # smoky_paloma = Drink(
 #     id="smoky_paloma",
 #     name="Smoky Paloma",
@@ -488,7 +488,7 @@ dark_n_stormy = Drink(
 #     description="Mezcal, grapefruit soda, and lime",
 #     section="Classics",
 # )
-# 
+#
 # midnight_oil = Drink(
 #     id="midnight_oil",
 #     name="Midnight Oil",
@@ -496,7 +496,7 @@ dark_n_stormy = Drink(
 #     description="Dark rum, cold brew coffee, honey, and bitters",
 #     section="Experiments",
 # )
-# 
+#
 # orchard_ember = Drink(
 #     id="orchard_ember",
 #     name="Orchard Ember",
@@ -508,7 +508,7 @@ dark_n_stormy = Drink(
 #     description="Bourbon, spiced apple cider, fresh ginger, and lime",
 #     section="Experiments",
 # )
-# 
+#
 # spicy_mezcalita = Drink(
 #     id="spicy_mezcalita",
 #     name="Spicy Pina Mezcalita",
@@ -520,7 +520,7 @@ dark_n_stormy = Drink(
 #     description="Mezcal, pineapple juice, lime, and jalapeno",
 #     section="Experiments",
 # )
-# 
+#
 # stone_fence = Drink(
 #     id="stone_fence",
 #     name="Stone Fence",
@@ -529,7 +529,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # mezcal_mule = Drink(
 #     id="mezcal_mule",
 #     name="Mezcal Mule",
@@ -538,7 +538,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # coffee_cider = Drink(
 #     id="coffee_cider",
 #     name="Coffee Cider",
@@ -547,7 +547,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # rum_runner = Drink(
 #     id="rum_runner",
 #     name="Rum Runner",
@@ -556,7 +556,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # bitter_apple = Drink(
 #     id="bitter_apple",
 #     name="Bitter Apple",
@@ -565,7 +565,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # oaxacan_morning = Drink(
 #     id="oaxacan_morning",
 #     name="Oaxacan Morning",
@@ -578,7 +578,7 @@ dark_n_stormy = Drink(
 #     secret_menu=True,
 #     section="Secret",
 # )
-# 
+#
 # ginger_fizz = Drink(
 #     id="ginger_fizz",
 #     name="Ginger Fizz",
@@ -590,7 +590,7 @@ dark_n_stormy = Drink(
 #     description="Spiced apple cider, ginger beer, and lime",
 #     section="Mocktails",
 # )
-# 
+#
 # tropical_wakeup = Drink(
 #     id="tropical_wakeup",
 #     name="Tropical Wakeup",
@@ -602,7 +602,7 @@ dark_n_stormy = Drink(
 #     description="Pineapple juice, cold brew, and honey",
 #     section="Mocktails",
 # )
-# 
+#
 # pomelo_sparkler = Drink(
 #     id="pomelo_sparkler",
 #     name="Pomelo Sparkler",

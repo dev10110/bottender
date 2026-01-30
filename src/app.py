@@ -104,6 +104,69 @@ def show_drink_queue():
     return render_template("queue.html", bot=bot)
 
 
+@app.route("/staged/<uuid>")
+def staged_start(uuid):
+    # redirect to stage 0
+    if bot.get_next_drink_uuid() != uuid:
+        return redirect("/drink_queue")
+    return redirect(f"/staged/{uuid}/0")
+
+
+@app.route("/staged/<uuid>/<int:stage_id>")
+def staged_page(uuid, stage_id):
+    # render a stage for the next queued drink
+    if bot.get_next_drink_uuid() != uuid:
+        return redirect("/drink_queue")
+
+    drink_id = bot.drink_queue[0][0]
+    d = bot.find_drink(drink_id)
+    if not d:
+        return redirect("/drink_queue")
+
+    stages = getattr(d, "stages", None)
+    if not stages:
+        # fallback: pour whole drink and return home
+        bot.pour_parallel_next()
+        return redirect("/")
+
+    if stage_id < 0 or stage_id >= len(stages):
+        return redirect("/")
+
+    s = stages[stage_id]
+    return render_template(
+        "staged.html", bot=bot, drink=d, stage_index=stage_id, stage=s, uuid=uuid
+    )
+
+
+@app.route("/pour_stage/<uuid>/<int:stage_id>", methods=["POST"])
+def pour_stage(uuid, stage_id):
+
+    print(f"Pouring stage {stage_id} for drink with UUID {uuid}")
+
+    # ensure this is the next queued drink
+    if bot.get_next_drink_uuid() != uuid:
+        return redirect("/drink_queue")
+
+    drink_id = bot.drink_queue[0][0]
+    d = bot.find_drink(drink_id)
+    print("Found drink: ", d.name)
+    stages = getattr(d, "stages", None)
+
+    # perform the stage pour (BLOCKING)!!
+    bot.pour_stage(drink_id, stage_id)
+
+    print(f"Done pouring stage {stage_id}, redirecting...")
+
+    # if last stage, dequeue and go home
+    if stage_id >= len(stages) - 1:
+        bot.deque(uuid)
+        print("Done with all stages, going home")
+        return redirect("/")
+    # otherwise go to next stage
+    print(f"Going to next stage: {stage_id+1}")
+    return redirect(f"/staged/{uuid}/{stage_id+1}")
+
+
 def get_messages(bot):
     for m in bot.messages:
         flash(m)

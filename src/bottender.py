@@ -25,18 +25,18 @@ class BotTender:
     def __init__(self):
 
         dispense_per_five_sec = [
-            0.71,
-            0.63,
-            0.64,
-            0.63,
-            0.786,
-            0.787,
-            0.80,
-            0.817,
-            0.6,
-            0.565,
-            0.58,
-            0.655,
+            10 * 0.71,
+            10 * 0.63,
+            10 * 0.64,
+            10 * 0.63,
+            10 * 0.786,
+            10 * 0.787,
+            10 * 0.80,
+            10 * 0.817,
+            10 * 0.6,
+            10 * 0.565,
+            10 * 0.58,
+            10 * 0.655,
         ]
 
         ## TEMPORARY!
@@ -180,6 +180,58 @@ class BotTender:
             print(t)
 
         return poured
+
+    def pour_stage(self, drink_id, stage_index):
+        """Pour only the specified stage for a drink. Stage format expected:
+        {"instruction": "...", "pours": {"Vodka": 1.0, ...}}
+        """
+        d = self.find_drink(drink_id)
+        if not d:
+            print("Unknown drink for staged pour: ", drink_id)
+            return
+
+        stages = getattr(d, "stages", None)
+        if not stages or stage_index < 0 or stage_index >= len(stages):
+            print("No stage to pour for index", stage_index)
+            return
+
+        stage = stages[stage_index]
+        print(f"Stage: {stage}")
+        print(f"Stage pours: {stage.pours}")
+        pours = stage.pours
+
+        plan = []
+        for ing, oz in pours.items():
+            if self.is_available(ing):
+                mot = self.which_motor(ing)
+                t = self.POUR_CONSTS[mot] * oz
+                plan.append([mot, t, False])
+            else:
+                print(f"Ingredient {ing} not available for stage {stage_index}")
+
+        if not plan:
+            print("Nothing to pour for this stage")
+            return
+
+        start = time.time()
+        for m in [p[0] for p in plan]:
+            self.motors[m].forward()
+
+        done = False
+        while not done:
+            t = (time.time() - start) * 1000
+            print(f"Elapsed time: {t} ms")
+            for i in range(len(plan)):
+                if not plan[i][2]:
+                    if t > plan[i][1]:
+                        self.motors[plan[i][0]].stop()
+                        plan[i][2] = True
+            done = all([p[2] for p in plan])
+            # time.sleep(0.05)
+
+        print("Stage pour complete")
+
+        return
 
     def is_available(self, ing):
         return ing in self.drinksController.drinks

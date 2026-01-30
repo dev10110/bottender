@@ -1,26 +1,31 @@
 """
-    Data structures for stages of the drink recipes. 
-    The "instruction" is a string displayed to the user at that stage.
-    The "button" text is the label for the button to proceed.
-    The "pours" is a dict of {ingredient: amount} to be poured at that stage, i.e., AFTER the button is pressed. 
-    At the end of the pour, the page will automatically refresh to either the next stage or back to the home page.
+Data structures for stages of the drink recipes.
+The "instruction" is a string displayed to the user at that stage.
+The "button_text" is the label for the button to proceed.
+The "pours" is a dict of {ingredient: amount} to be poured at that stage, i.e., AFTER the button is pressed.
+At the end of the pour, the page will automatically refresh to either the next stage or back to the home page.
 """
+
+
 class DrinkStage:
-    def __init__(self, instruction, pours, button="Next"):
+    def __init__(self, instruction, pours, button_text):
         self.instruction = instruction
         self.pours = pours  # dict of {ingredient: amount}
-        self.button = button
+        self.button_text = button_text
+
 
 """
     The Drink class represents a cocktail recipe, with its many stages. 
     The ingredients dict is auto-derived from the stages.
 """
+
+
 class Drink:
     def __init__(
         self,
         id,
         name,
-        stages, 
+        stages,
         recommended=False,
         sort_priority=0,
         garnish=None,
@@ -42,14 +47,13 @@ class Drink:
         self.ingredients = self._derive_ingredients_from_stages(self.stages)
 
     def _derive_ingredients_from_stages(self, stages):
-        """Return an aggregated ingredient dict from a list of stages.
-        """
+        """Return an aggregated ingredient dict from a list of stages."""
         if not stages:
             return {}
 
         agg = {}
         for s in stages:
-            pours = getattr(s, 'pours', {})
+            pours = getattr(s, "pours", {})
 
             for k, v in pours.items():
                 # ensure numeric aggregation
