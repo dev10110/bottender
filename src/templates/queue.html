@@ -3,9 +3,8 @@
 {% block content %}
     <div class="container">
         <section>
-            <h3>Up Next: {{ bot.get_next_drink_name() }}</h3>
-        </section>
-        <section>
+            <h4>Up Next:</h4>
+              <h3> {{ bot.get_next_drink_name() }}</h3>
             {% if bot.get_next_drink_uuid() %}
                 <a id="release"
                    href="/staged/{{ bot.get_next_drink_uuid() }}"
@@ -32,7 +31,7 @@
             {% endif %}
         </section>
         <section>
-            <h3>In the Queue:</h3>
+            <h4>In the Queue:</h4>
             <ol>
                 {% for drink in bot.drink_queue %}<li>{{ bot.find_drink(drink[0]).name }}</li>{% endfor %}
             </ol>
