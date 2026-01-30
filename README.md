@@ -41,10 +41,7 @@ flask run --host=0.0.0.0 --port=80
 and now navigate to `bot.tender/`
 
 ## TODO: 
-- fonts
-- background that looks like the menu
 - n stages with user interaction
-- change out recipes
 - some secret menu icon ? 
 
 https://www.flaticon.com/free-icon-font/user-robot_10461966?page=1&position=1&term=robot&origin=search&related_id=10461966
