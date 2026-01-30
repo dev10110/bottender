@@ -1,28 +1,4 @@
-class Drink:
-    def __init__(
-        self,
-        id,
-        name,
-        ingredients,
-        recommended=False,
-        sort_priority=0,
-        garnish=None,
-        section=None,
-        hidden=False,
-        secret_menu=False,
-        description="",
-    ):
-        self.id = id
-        self.name = name
-        self.ingredients = ingredients  # each ingredient is 1 oz measure
-        self.recommended = recommended
-        self.sort_priority = sort_priority
-        self.garnish = garnish
-        self.hidden = hidden
-        self.description = description
-        self.secret_menu = secret_menu
-        self.section = section
-
+from drink import Drink, DrinkStage  
 
 # moscow_mule = Drink("moscow_mule", "Moscow Mule",
 #     {"Vodka": 2,
@@ -473,170 +449,186 @@ class Drink:
 dark_n_stormy = Drink(
     id="dark_n_stormy",
     name="Dark 'n Stormy",
-    ingredients={"Ginger Beer": 4.0, "Rum": 2.0},
     description="Rum, ginger beer, and lime",
     section="Classics",
+    stages = [
+        DrinkStage(
+            instruction="Place the cup.", 
+            pours={"Ginger Beer": 4.0}, 
+            button = "Start pouring"
+        ), 
+        DrinkStage( 
+            instruction = "Add some ice, and place back the cup.",
+            pours={"Rum": 2.0},
+            button = "Continue"
+        ), 
+        DrinkStage(
+            instruction="Garnish with a lime wedge.", 
+            pours={}, 
+            button = "Back to menu"
+        ),
+    ]
 )
-manhattan = Drink(
-    id="manhattan",
-    name="Manhattan",
-    ingredients={"Bourbon": 2.0, "Vermouth": 1.0},
-    description="Bourbon, vermouth, cherry, and bitters",
-    section="Classics",
-)
-
-smoky_paloma = Drink(
-    id="smoky_paloma",
-    name="Smoky Paloma",
-    ingredients={
-        "Mezcal": 2.0,
-        "Grapefruit Soda": 4.0,
-        "Lime": 0.5,
-    },
-    description="Mezcal, grapefruit soda, and lime",
-    section="Classics",
-)
-
-midnight_oil = Drink(
-    id="midnight_oil",
-    name="Midnight Oil",
-    ingredients={"Rum": 2.0, "Cold Brew": 2.0},
-    description="Dark rum, cold brew coffee, honey, and bitters",
-    section="Experiments",
-)
-
-orchard_ember = Drink(
-    id="orchard_ember",
-    name="Orchard Ember",
-    ingredients={
-        "Bourbon": 2.0,
-        "Cider": 3.0,
-        "Lime": 0.5,
-    },
-    description="Bourbon, spiced apple cider, fresh ginger, and lime",
-    section="Experiments",
-)
-
-spicy_mezcalita = Drink(
-    id="spicy_mezcalita",
-    name="Spicy Pina Mezcalita",
-    ingredients={
-        "Mezcal": 2.0,
-        "Pineapple Juice": 2.0,
-        "Lime": 0.5,
-    },
-    description="Mezcal, pineapple juice, lime, and jalapeno",
-    section="Experiments",
-)
-
-stone_fence = Drink(
-    id="stone_fence",
-    name="Stone Fence",
-    ingredients={"Bourbon": 2.0, "Cider": 4.0},
-    description="Bourbon, spiced apple cider, and bitters",
-    secret_menu=True,
-    section="Secret",
-)
-
-mezcal_mule = Drink(
-    id="mezcal_mule",
-    name="Mezcal Mule",
-    ingredients={"Mezcal": 2.0, "Ginger Beer": 4.0, "Lime": 0.5},
-    description="Mezcal, ginger beer, lime, and fresh ginger",
-    secret_menu=True,
-    section="Secret",
-)
-
-coffee_cider = Drink(
-    id="coffee_cider",
-    name="Coffee Cider",
-    ingredients={"Rum": 1.5, "Cold Brew": 2.0, "Cider": 2.0},
-    description="Rum, cold brew, cider, and some cinnamon",
-    secret_menu=True,
-    section="Secret",
-)
-
-rum_runner = Drink(
-    id="rum_runner",
-    name="Rum Runner",
-    ingredients={"Rum": 2.0, "Pineapple Juice": 2.0, "Lime": 0.75, "Honey": 0.5},
-    description="Rum, pineapple juice, lime, and honey",
-    secret_menu=True,
-    section="Secret",
-)
-
-bitter_apple = Drink(
-    id="bitter_apple",
-    name="Bitter Apple",
-    ingredients={"Vermouth": 1.5, "Cider": 2.0, "Ginger Beer": 2.0},
-    description="Vermouth, spiced apple cider, ginger beer, and bitters",
-    secret_menu=True,
-    section="Secret",
-)
-
-oaxacan_morning = Drink(
-    id="oaxacan_morning",
-    name="Oaxacan Morning",
-    ingredients={
-        "Mezcal": 1.5,
-        "Cold Brew": 1.5,
-        "Pineapple Juice": 1.5,
-    },
-    description="Mezcal, cold brew, pineapple juice",
-    secret_menu=True,
-    section="Secret",
-)
-
-ginger_fizz = Drink(
-    id="ginger_fizz",
-    name="Ginger Fizz",
-    ingredients={
-        "Cider": 3.0,
-        "Ginger Beer": 3.0,
-        "Lime": 0.5,
-    },
-    description="Spiced apple cider, ginger beer, and lime",
-    section="Mocktails",
-)
-
-tropical_wakeup = Drink(
-    id="tropical_wakeup",
-    name="Tropical Wakeup",
-    ingredients={
-        "Pineapple Juice": 3.0,
-        "Cold Brew": 2.0,
-        "Honey": 0.5,
-    },
-    description="Pineapple juice, cold brew, and honey",
-    section="Mocktails",
-)
-
-pomelo_sparkler = Drink(
-    id="pomelo_sparkler",
-    name="Pomelo Sparkler",
-    ingredients={
-        "Grapefruit Soda": 5.0,
-    },
-    description="Grapefruit soda, and a spritz of lime",
-    section="Mocktails",
-)
+# manhattan = Drink(
+#     id="manhattan",
+#     name="Manhattan",
+#     ingredients={"Bourbon": 2.0, "Vermouth": 1.0},
+#     description="Bourbon, vermouth, cherry, and bitters",
+#     section="Classics",
+# )
+# 
+# smoky_paloma = Drink(
+#     id="smoky_paloma",
+#     name="Smoky Paloma",
+#     ingredients={
+#         "Mezcal": 2.0,
+#         "Grapefruit Soda": 4.0,
+#         "Lime": 0.5,
+#     },
+#     description="Mezcal, grapefruit soda, and lime",
+#     section="Classics",
+# )
+# 
+# midnight_oil = Drink(
+#     id="midnight_oil",
+#     name="Midnight Oil",
+#     ingredients={"Rum": 2.0, "Cold Brew": 2.0},
+#     description="Dark rum, cold brew coffee, honey, and bitters",
+#     section="Experiments",
+# )
+# 
+# orchard_ember = Drink(
+#     id="orchard_ember",
+#     name="Orchard Ember",
+#     ingredients={
+#         "Bourbon": 2.0,
+#         "Cider": 3.0,
+#         "Lime": 0.5,
+#     },
+#     description="Bourbon, spiced apple cider, fresh ginger, and lime",
+#     section="Experiments",
+# )
+# 
+# spicy_mezcalita = Drink(
+#     id="spicy_mezcalita",
+#     name="Spicy Pina Mezcalita",
+#     ingredients={
+#         "Mezcal": 2.0,
+#         "Pineapple Juice": 2.0,
+#         "Lime": 0.5,
+#     },
+#     description="Mezcal, pineapple juice, lime, and jalapeno",
+#     section="Experiments",
+# )
+# 
+# stone_fence = Drink(
+#     id="stone_fence",
+#     name="Stone Fence",
+#     ingredients={"Bourbon": 2.0, "Cider": 4.0},
+#     description="Bourbon, spiced apple cider, and bitters",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# mezcal_mule = Drink(
+#     id="mezcal_mule",
+#     name="Mezcal Mule",
+#     ingredients={"Mezcal": 2.0, "Ginger Beer": 4.0, "Lime": 0.5},
+#     description="Mezcal, ginger beer, lime, and fresh ginger",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# coffee_cider = Drink(
+#     id="coffee_cider",
+#     name="Coffee Cider",
+#     ingredients={"Rum": 1.5, "Cold Brew": 2.0, "Cider": 2.0},
+#     description="Rum, cold brew, cider, and some cinnamon",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# rum_runner = Drink(
+#     id="rum_runner",
+#     name="Rum Runner",
+#     ingredients={"Rum": 2.0, "Pineapple Juice": 2.0, "Lime": 0.75, "Honey": 0.5},
+#     description="Rum, pineapple juice, lime, and honey",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# bitter_apple = Drink(
+#     id="bitter_apple",
+#     name="Bitter Apple",
+#     ingredients={"Vermouth": 1.5, "Cider": 2.0, "Ginger Beer": 2.0},
+#     description="Vermouth, spiced apple cider, ginger beer, and bitters",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# oaxacan_morning = Drink(
+#     id="oaxacan_morning",
+#     name="Oaxacan Morning",
+#     ingredients={
+#         "Mezcal": 1.5,
+#         "Cold Brew": 1.5,
+#         "Pineapple Juice": 1.5,
+#     },
+#     description="Mezcal, cold brew, pineapple juice",
+#     secret_menu=True,
+#     section="Secret",
+# )
+# 
+# ginger_fizz = Drink(
+#     id="ginger_fizz",
+#     name="Ginger Fizz",
+#     ingredients={
+#         "Cider": 3.0,
+#         "Ginger Beer": 3.0,
+#         "Lime": 0.5,
+#     },
+#     description="Spiced apple cider, ginger beer, and lime",
+#     section="Mocktails",
+# )
+# 
+# tropical_wakeup = Drink(
+#     id="tropical_wakeup",
+#     name="Tropical Wakeup",
+#     ingredients={
+#         "Pineapple Juice": 3.0,
+#         "Cold Brew": 2.0,
+#         "Honey": 0.5,
+#     },
+#     description="Pineapple juice, cold brew, and honey",
+#     section="Mocktails",
+# )
+# 
+# pomelo_sparkler = Drink(
+#     id="pomelo_sparkler",
+#     name="Pomelo Sparkler",
+#     ingredients={
+#         "Grapefruit Soda": 5.0,
+#     },
+#     description="Grapefruit soda, and a spritz of lime",
+#     section="Mocktails",
+# )
 
 MENU = [
     dark_n_stormy,
-    manhattan,
-    smoky_paloma,
-    midnight_oil,
-    orchard_ember,
-    spicy_mezcalita,
-    stone_fence,
-    mezcal_mule,
-    coffee_cider,
-    rum_runner,
-    bitter_apple,
-    oaxacan_morning,
-    ginger_fizz,
-    tropical_wakeup,
-    pomelo_sparkler,
+    # manhattan,
+    # smoky_paloma,
+    # midnight_oil,
+    # orchard_ember,
+    # spicy_mezcalita,
+    # stone_fence,
+    # mezcal_mule,
+    # coffee_cider,
+    # rum_runner,
+    # bitter_apple,
+    # oaxacan_morning,
+    # ginger_fizz,
+    # tropical_wakeup,
+    # pomelo_sparkler,
 ]
 
 SECTIONS = ["Classics", "Experiments", "Mocktails", "Secret"]
