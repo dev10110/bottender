@@ -3,7 +3,7 @@
 set -e
 
 # dont forget to source the env with 
-# source .venv/bin/activate
+source .venv/bin/activate
 
 echo "Formatting Python files..."
 black .

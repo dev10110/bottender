@@ -30,9 +30,12 @@
   --font-family-bottender: "Playwrite US Trad", cursive;
   --font-family-ldbars: serif;
   --font-family-drink-description: "IBM Plex Serif", serif;
-  --background-color: #fff9ea;         /****** BACKGROUND COLOR *******/
-  --color: #000000;                    /****** BASIC TEXT COLOR *****/
-  --h1-color: #000000;                   /****** HEADING COLOR *****/
+  /****** BACKGROUND COLOR *******/
+  --background-color: #fff9ea;
+  /****** BASIC TEXT COLOR *****/
+  --color: #000000;
+  /****** HEADING COLOR *****/
+  --h1-color: #000000;
   --h2-color: #000000;
   --h3-color: #000000;
   --h4-color: #000000;
@@ -40,7 +43,8 @@
   --h6-color: #000000;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #25435c;                  /********** PRIMARY ***********/
+  /********** PRIMARY ***********/
+  --primary: #25435c;
   --primary-hover: #ff9c8f;
   --primary-focus: #ff9c8f;
   --primary-inverse: #fff;
@@ -60,7 +64,8 @@ h1,
 h2,
 h3,
 h4,
-h5, h6 {
+h5,
+h6 {
   --font-weight: normal;
 }
 
@@ -81,9 +86,9 @@ h2 {
 h3 {
   --font-size: 1.25rem;
   --font-family: "IBM Plex Serif", serif;
-    color: var(--h3-color);
-    text-transform: uppercase;
---font-weight: bold;
+  color: var(--h3-color);
+  text-transform: uppercase;
+  --font-weight: bold;
   --typography-spacing-vertical: 1rem;
 }
 
@@ -105,6 +110,7 @@ h5 {
   --font-family: var(--font-family-drink-description);
   font-style: italic;
 }
+
 .drink-ingredients {
   --font-family: var(--font-family-drink-description);
 }
@@ -114,19 +120,67 @@ h5 {
   margin-bottom: 0;
 }
 
-/*
-.row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  flex-wrap: wrap;
-}
-.row > [class*='col-'] {
+
+/* Robot reveal button - mostly hidden off-screen, it will "poke" up occasionally */
+.robot-reveal {
+  position: fixed;
+  right: 16px;
+  bottom: -56px;
+  /* positioned completely off the bottom of the viewport */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  transform: translateY(0);
+  transition: transform 220ms ease, opacity 200ms ease;
+  opacity: 0.95;
+  user-select: none;
 }
-*/
+
+/* Poke animation: stay hidden most of the time, briefly translate up into view */
+@keyframes robot-poke {
+
+  0%,
+  77% {
+    transform: translateY(0);
+  }
+
+  80%,
+  90% {
+    transform: translateY(-72px);
+  }
+
+  93%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.robot-reveal.bop {
+  animation: robot-poke 5s ease-in-out infinite;
+}
+
+/* When the secret is revealed, keep the robot up */
+.robot-reveal.revealed {
+  transform: translateY(-72px);
+}
+
+/* Hidden secret section */
+#menu-section-Secret {
+  display: none;
+}
+
+#menu-section-Secret.visible {
+  display: block;
+}
 
 
 /* Sidebar */
@@ -135,7 +189,8 @@ h5 {
   top: 0;
   left: 0;
   height: 100%;
-  max-width: 15vw;              /* ~15% of screen */
+  max-width: 15vw;
+  /* ~15% of screen */
   width: 100%;
   overflow: hidden;
   z-index: 10;
