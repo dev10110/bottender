@@ -5,16 +5,7 @@
             <h4>Preparing: {{ drink.name }}</h4>
             <section>
                 <h3 id="stage-instruction">{{ stage_index + 1 }}. {{ stage.instruction }}</h3>
-                <!--
-                <img id="emptyglass"
-                     src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}" />
-                <img id="fillgif"
-                     hidden
-                     src="{{ url_for('static', filename='gifs/fill_gif.gif') }}" />
-                <img id="filledglass"
-                     hidden
-                     src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}" />
-            -->
+                <div id = "stage-images">
                 <img id="img_pre"
                      src="{{ url_for('static', filename=stage.img_pre) }}" />
                 <img id="img_during"
@@ -23,13 +14,13 @@
                 <img id="img_post"
                      hidden
                      src="{{ url_for('static', filename=stage.img_post) }}" />
+                </div>
             </section>
             <a id="release"
                href="#"
                onclick="release()"
                class="btn btn-block btn-lg btn-primary"
-               role="button">{{
-            stage.button_text }}</a>
+               role="button">{{ stage.button_text }}</a>
         </section>
     </div>
     <script>
