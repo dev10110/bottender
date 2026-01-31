@@ -456,386 +456,396 @@ dark_n_stormy = Drink(
             instruction="Place your cup.",
             pours={"Ginger Beer": 4.0},
             button_text="Start pouring",
+            img_pre = "gifs/place_cup.gif",
+            img_during = "gifs/pour.gif",
+            img_post = "gifs/pour.gif",
         ),
         DrinkStage(
             instruction="Add some ice, and place your cup back.",
             pours={"Rum": 2.0},
             button_text="Continue",
+            img_pre = "gifs/add_ice.gif",
+            img_during = "gifs/pour.gif",
+            img_post = "gifs/pour.gif",
         ),
         DrinkStage(
             instruction="Garnish with a lime wedge. Enjoy!",
             pours={},
             button_text="Back to menu",
-        ),
-    ],
-)
-manhattan = Drink(
-    id="manhattan",
-    name="Manhattan",
-    description="Bourbon, vermouth, bitters, topped with a cherry",
-    section="Classics",
-    stages=[
-        DrinkStage(
-            instruction="Place a mason jar.",
-            pours={"Bourbon": 2.0, "Vermouth": 1.0},
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice. Strain into your cup.",
-            pours={},
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Add a few drops bitters, and garnish with a cherry. Enjoy!",
-            pours={},
-            button_text="Back to menu",
+            img_pre = "gifs/enjoy.gif",
+            img_during = "gifs/enjoy.gif",
+            img_post = "gifs/enjoy.gif",
         ),
     ],
 )
 
-smoky_paloma = Drink(
-    id="smoky_paloma",
-    name="Smoky Paloma",
-    description="Mezcal, grapefruit soda, and lime",
-    section="Classics",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup (salt the rim first if desired).",
-            pours={
-                "Mezcal": 2.0,
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice, and place your cup back.",
-            pours={
-                "Grapefruit Soda": 4.0,
-            },
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Garnish with a slice of grapefruit. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-midnight_oil = Drink(
-    id="midnight_oil",
-    name="Midnight Oil",
-    description="Dark rum, cold brew coffee, honey, and bitters",
-    section="Experiments",
-    stages=[
-        DrinkStage(
-            instruction="Place a mason jar.",
-            pours={
-                "Rum": 2.0,
-                "Cold Brew": 2.0,
-                "Honey": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice and strain into your cup. Add a few dashes of bitters. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-orchard_ember = Drink(
-    id="orchard_ember",
-    name="Orchard Ember",
-    description="Bourbon, spiced apple cider, fresh ginger, and lime",
-    section="Experiments",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup.",
-            pours={
-                "Bourbon": 2.0,
-                "Cider": 3.0,
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice and some muddled fresh ginger. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-spicy_mezcalita = Drink(
-    id="spicy_mezcalita",
-    name="Spicy Pina Mezcalita",
-    description="Mezcal, pineapple juice, lime, and jalapeno",
-    section="Experiments",
-    stages=[
-        DrinkStage(
-            instruction="Place a mason jar.",
-            pours={
-                "Mezcal": 2.0,
-                "Pineapple Juice": 2.0,
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice and strain into your cup. Salt rim first if desired. Garnish with jalapenos. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-stone_fence = Drink(
-    id="stone_fence",
-    name="Stone Fence",
-    description="Bourbon, spiced apple cider, and bitters",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup.",
-            pours={
-                "Bourbon": 2.0,
-            "Cider": 4.0,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add some ice and a few dashes of bitters. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-mezcal_mule = Drink(
-    id="mezcal_mule",
-    name="Mezcal Mule",
-    description="Mezcal, ginger beer, lime, and fresh ginger",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup.",
-            pours={
-                "Mezcal": 2.0,
-                "Ginger Beer": 4.0,
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice and garnish with some ginger. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-coffee_cider = Drink(
-    id="coffee_cider",
-    name="Coffee Cider",
-    description="Rum, cold brew, spiced apple cider, and some cinnamon",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup.",
-            pours={
-                "Rum": 1.5,
-                "Cold Brew": 2.0,
-                "Cider": 2.0,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice and sprinkle some cinnamon. Enjoy!"
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-
-rum_runner = Drink(
-    id="rum_runner",
-    name="Rum Runner",
-    description="Rum, pineapple juice, lime, and honey",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place a mason jar.",
-            pours={
-                "Rum": 2.0,
-                "Pineapple Juice": 2.0,
-                "Lime": 0.75,
-                "Honey": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice and strain into your cup. Garnish with a lime wedge. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-bitter_apple = Drink(
-    id="bitter_apple",
-    name="Bitter Apple",
-    description="Vermouth, spiced apple cider, ginger beer, and bitters",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place your cup.",
-            pours={
-                "Vermouth": 1.5,
-                "Cider": 2.0,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice and place your cup back.",
-            pours={"Ginger Beer": 3.0},
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Add a few dashes of bitters. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-oaxacan_morning = Drink(
-    id="oaxacan_morning",
-    name="Oaxacan Morning",
-    description="Mezcal, cold brew, pineapple juice",
-    secret_menu=True,
-    section="Secret",
-    stages=[
-        DrinkStage(
-            instruction="Place a mason jar.",
-            pours={
-                "Mezcal": 1.5,
-                "Cold Brew": 1.5,
-                "Pineapple Juice": 1.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice and strain into your cup. Garnish with a pineapple wedge. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-ginger_fizz = Drink(
-    id="ginger_fizz",
-    name="Ginger Fizz",
-    description="Spiced apple cider, ginger beer",
-    section="Mocktails",
-    stages=[
-        DrinkStage(
-            instruction="Place the cup.",
-            pours={
-                "Cider": 3.0,
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice, and place the cup back.",
-            pours={
-                "Ginger Beer": 3.0,
-            },
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Garnish with a slice of ginger. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-tropical_wakeup = Drink(
-    id="tropical_wakeup",
-    name="Tropical Wakeup",
-    description="Pineapple juice, cold brew, and honey",
-    section="Mocktails",
-    stages=[
-        DrinkStage(
-            instruction="Place the cup.",
-            pours={
-                "Pineapple Juice": 3.0,
-                "Cold Brew": 2.0,
-                "Honey": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Shake with ice and strain into a glass. Garnish with a pineapple wedge. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
-
-pomelo_sparkler = Drink(
-    id="pomelo_sparkler",
-    name="Pomelo Sparkler",
-    description="Grapefruit soda, and a spritz of lime",
-    section="Mocktails",
-    stages=[
-        DrinkStage(
-            instruction="Place the cup. Optionally salt the rim and add muddled ginger.",
-            pours={
-                "Lime": 0.5,
-            },
-            button_text="Start pouring",
-        ),
-        DrinkStage(
-            instruction="Add ice, and place the cup back.",
-            pours={
-                "Grapefruit Soda": 5.0,
-            },
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Garnish with a lime wedge. Enjoy!",
-            pours={},
-            button_text="Back to menu",
-        ),
-    ],
-)
+# manhattan = Drink(
+#     id="manhattan",
+#     name="Manhattan",
+#     description="Bourbon, vermouth, bitters, topped with a cherry",
+#     section="Classics",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place a mason jar.",
+#             pours={"Bourbon": 2.0, "Vermouth": 1.0},
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice. Strain into your cup.",
+#             pours={},
+#             button_text="Continue",
+#         ),
+#         DrinkStage(
+#             instruction="Add a few drops bitters, and garnish with a cherry. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# smoky_paloma = Drink(
+#     id="smoky_paloma",
+#     name="Smoky Paloma",
+#     description="Mezcal, grapefruit soda, and lime",
+#     section="Classics",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup (salt the rim first if desired).",
+#             pours={
+#                 "Mezcal": 2.0,
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice, and place your cup back.",
+#             pours={
+#                 "Grapefruit Soda": 4.0,
+#             },
+#             button_text="Continue",
+#         ),
+#         DrinkStage(
+#             instruction="Garnish with a slice of grapefruit. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# midnight_oil = Drink(
+#     id="midnight_oil",
+#     name="Midnight Oil",
+#     description="Dark rum, cold brew coffee, honey, and bitters",
+#     section="Experiments",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place a mason jar.",
+#             pours={
+#                 "Rum": 2.0,
+#                 "Cold Brew": 2.0,
+#                 "Honey": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice and strain into your cup. Add a few dashes of bitters. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# orchard_ember = Drink(
+#     id="orchard_ember",
+#     name="Orchard Ember",
+#     description="Bourbon, spiced apple cider, fresh ginger, and lime",
+#     section="Experiments",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup.",
+#             pours={
+#                 "Bourbon": 2.0,
+#                 "Cider": 3.0,
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice and some muddled fresh ginger. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# spicy_mezcalita = Drink(
+#     id="spicy_mezcalita",
+#     name="Spicy Pina Mezcalita",
+#     description="Mezcal, pineapple juice, lime, and jalapeno",
+#     section="Experiments",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place a mason jar.",
+#             pours={
+#                 "Mezcal": 2.0,
+#                 "Pineapple Juice": 2.0,
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice and strain into your cup. Salt rim first if desired. Garnish with jalapenos. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# stone_fence = Drink(
+#     id="stone_fence",
+#     name="Stone Fence",
+#     description="Bourbon, spiced apple cider, and bitters",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup.",
+#             pours={
+#                 "Bourbon": 2.0,
+#             "Cider": 4.0,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add some ice and a few dashes of bitters. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# mezcal_mule = Drink(
+#     id="mezcal_mule",
+#     name="Mezcal Mule",
+#     description="Mezcal, ginger beer, lime, and fresh ginger",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup.",
+#             pours={
+#                 "Mezcal": 2.0,
+#                 "Ginger Beer": 4.0,
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice and garnish with some ginger. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# coffee_cider = Drink(
+#     id="coffee_cider",
+#     name="Coffee Cider",
+#     description="Rum, cold brew, spiced apple cider, and some cinnamon",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup.",
+#             pours={
+#                 "Rum": 1.5,
+#                 "Cold Brew": 2.0,
+#                 "Cider": 2.0,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice and sprinkle some cinnamon. Enjoy!"
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# 
+# rum_runner = Drink(
+#     id="rum_runner",
+#     name="Rum Runner",
+#     description="Rum, pineapple juice, lime, and honey",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place a mason jar.",
+#             pours={
+#                 "Rum": 2.0,
+#                 "Pineapple Juice": 2.0,
+#                 "Lime": 0.75,
+#                 "Honey": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice and strain into your cup. Garnish with a lime wedge. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# bitter_apple = Drink(
+#     id="bitter_apple",
+#     name="Bitter Apple",
+#     description="Vermouth, spiced apple cider, ginger beer, and bitters",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place your cup.",
+#             pours={
+#                 "Vermouth": 1.5,
+#                 "Cider": 2.0,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice and place your cup back.",
+#             pours={"Ginger Beer": 3.0},
+#             button_text="Continue",
+#         ),
+#         DrinkStage(
+#             instruction="Add a few dashes of bitters. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# oaxacan_morning = Drink(
+#     id="oaxacan_morning",
+#     name="Oaxacan Morning",
+#     description="Mezcal, cold brew, pineapple juice",
+#     secret_menu=True,
+#     section="Secret",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place a mason jar.",
+#             pours={
+#                 "Mezcal": 1.5,
+#                 "Cold Brew": 1.5,
+#                 "Pineapple Juice": 1.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice and strain into your cup. Garnish with a pineapple wedge. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# ginger_fizz = Drink(
+#     id="ginger_fizz",
+#     name="Ginger Fizz",
+#     description="Spiced apple cider, ginger beer",
+#     section="Mocktails",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place the cup.",
+#             pours={
+#                 "Cider": 3.0,
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice, and place the cup back.",
+#             pours={
+#                 "Ginger Beer": 3.0,
+#             },
+#             button_text="Continue",
+#         ),
+#         DrinkStage(
+#             instruction="Garnish with a slice of ginger. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# tropical_wakeup = Drink(
+#     id="tropical_wakeup",
+#     name="Tropical Wakeup",
+#     description="Pineapple juice, cold brew, and honey",
+#     section="Mocktails",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place the cup.",
+#             pours={
+#                 "Pineapple Juice": 3.0,
+#                 "Cold Brew": 2.0,
+#                 "Honey": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Shake with ice and strain into a glass. Garnish with a pineapple wedge. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
+# 
+# pomelo_sparkler = Drink(
+#     id="pomelo_sparkler",
+#     name="Pomelo Sparkler",
+#     description="Grapefruit soda, and a spritz of lime",
+#     section="Mocktails",
+#     stages=[
+#         DrinkStage(
+#             instruction="Place the cup. Optionally salt the rim and add muddled ginger.",
+#             pours={
+#                 "Lime": 0.5,
+#             },
+#             button_text="Start pouring",
+#         ),
+#         DrinkStage(
+#             instruction="Add ice, and place the cup back.",
+#             pours={
+#                 "Grapefruit Soda": 5.0,
+#             },
+#             button_text="Continue",
+#         ),
+#         DrinkStage(
+#             instruction="Garnish with a lime wedge. Enjoy!",
+#             pours={},
+#             button_text="Back to menu",
+#         ),
+#     ],
+# )
 
 MENU = [
     dark_n_stormy,
-    manhattan,
-    smoky_paloma,
-    midnight_oil,
-    orchard_ember,
-    spicy_mezcalita,
-    stone_fence,
-    mezcal_mule,
-    coffee_cider,
-    rum_runner,
-    bitter_apple,
-    oaxacan_morning,
-    ginger_fizz,
-    tropical_wakeup,
-    pomelo_sparkler,
+    # manhattan,
+    # smoky_paloma,
+    # midnight_oil,
+    # orchard_ember,
+    # spicy_mezcalita,
+    # stone_fence,
+    # mezcal_mule,
+    # coffee_cider,
+    # rum_runner,
+    # bitter_apple,
+    # oaxacan_morning,
+    # ginger_fizz,
+    # tropical_wakeup,
+    # pomelo_sparkler,
 ]
 
 SECTIONS = ["Classics", "Experiments", "Mocktails", "Secret"]

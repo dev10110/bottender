@@ -4,7 +4,8 @@
         <section>
             <h3>Preparing: {{ drink.name }}</h3>
             <section>
-                <h4>{{ stage_index + 1 }}. {{ stage.instruction }}</h4>
+                <h4 id="stage-instruction">{{ stage_index + 1 }}. {{ stage.instruction }}</h4>
+                <!--
                 <img id="emptyglass"
                      src="{{ url_for('static', filename='figs/fill_gif/fill_00.png') }}" />
                 <img id="fillgif"
@@ -13,6 +14,15 @@
                 <img id="filledglass"
                      hidden
                      src="{{ url_for('static', filename='figs/fill_gif/fill_47.png') }}" />
+            -->
+                <img id="img_pre"
+                     src="{{ url_for('static', filename=stage.img_pre) }}" />
+                <img id="img_during"
+                     hidden
+                     src="{{ url_for('static', filename=stage.img_during) }}" />
+                <img id="img_post"
+                     hidden
+                     src="{{ url_for('static', filename=stage.img_post) }}" />
             </section>
             <a id="release"
                href="#"
@@ -23,27 +33,31 @@
         </section>
     </div>
     <script>
-    function set_drink_image_to_pouring() 
+    function set_drink_image_to_during() 
     {
-        document.getElementById("emptyglass").hidden = true;
-        document.getElementById("fillgif").hidden = false;
-        document.getElementById("filledglass").hidden = true;
+        document.getElementById("img_pre").hidden = true;
+        document.getElementById("img_during").hidden = false;
+        document.getElementById("img_post").hidden = true;
         var release_button = document.getElementById("release");
         release_button.innerText = "Pouring...";
         release_button.className += " outline";
         release_button.setAttribute('aria-busy', "true");
         release_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
 
+        document.getElementById("stage-instruction").innerText = "Pouring... Please wait.";
+
     }
 
-    function set_drink_image_to_done() {
+    function set_drink_image_to_post() {
 
         var release_button = document.getElementById("release");
             release_button.innerText = "Done. Loading next step...";
             release_button.setAttribute('aria-busy', "false")
-            document.getElementById("emptyglass").hidden = true;
-            document.getElementById("fillgif").hidden = true;
-            document.getElementById("filledglass").hidden = false;
+            document.getElementById("img_pre").hidden = true;
+            document.getElementById("img_during").hidden = true;
+            document.getElementById("img_post").hidden = false;
+            // hide the instructions
+            document.getElementById("stage-instruction").hidden = true;
     }
 
     function sleep_for_ms(ms) {
@@ -54,7 +68,7 @@
     function release() {
         console.log("Releasing stage {{ stage_index }} for drink {{ uuid }}");
 
-        set_drink_image_to_pouring();
+        set_drink_image_to_during();
 
         fetch(`${window.origin}/pour_stage/{{ uuid }}/{{ stage_index }}`, {
             method: "POST",
@@ -72,7 +86,7 @@
 
             console.log("Received response for stage release:", response);
 
-            set_drink_image_to_done();
+            set_drink_image_to_post();
 
             if (response.redirected) {
                 setTimeout(() => {

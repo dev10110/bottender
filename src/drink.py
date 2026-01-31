@@ -8,10 +8,13 @@ At the end of the pour, the page will automatically refresh to either the next s
 
 
 class DrinkStage:
-    def __init__(self, instruction, pours, button_text):
+    def __init__(self, instruction, pours, button_text, img_pre, img_during, img_post):
         self.instruction = instruction
         self.pours = pours  # dict of {ingredient: amount}
         self.button_text = button_text
+        self.img_pre = img_pre
+        self.img_during = img_during
+        self.img_post = img_post
 
 
 """
