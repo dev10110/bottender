@@ -453,12 +453,12 @@ dark_n_stormy = Drink(
     section="Classics",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={"Ginger Beer": 4.0},
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add some ice, and place back the cup.",
+            instruction="Add some ice, and place your cup back.",
             pours={"Rum": 2.0},
             button_text="Continue",
         ),
@@ -476,12 +476,12 @@ manhattan = Drink(
     section="Classics",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place a mason jar.",
             pours={"Bourbon": 2.0, "Vermouth": 1.0},
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Shake with ice, strain into glass.",
+            instruction="Shake with ice. Strain into your cup.",
             pours={},
             button_text="Continue",
         ),
@@ -500,7 +500,7 @@ smoky_paloma = Drink(
     section="Classics",
     stages=[
         DrinkStage(
-            instruction="Place the cup. (Salt the rim if desired)",
+            instruction="Place your cup (salt the rim first if desired).",
             pours={
                 "Mezcal": 2.0,
                 "Lime": 0.5,
@@ -508,7 +508,7 @@ smoky_paloma = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice, and place back the cup.",
+            instruction="Add ice, and place your cup back.",
             pours={
                 "Grapefruit Soda": 4.0,
             },
@@ -529,7 +529,7 @@ midnight_oil = Drink(
     section="Experiments",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place a mason jar.",
             pours={
                 "Rum": 2.0,
                 "Cold Brew": 2.0,
@@ -538,7 +538,7 @@ midnight_oil = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Shake with ice and strain into a glass. Garnish with an orange twist. Enjoy!",
+            instruction="Shake with ice and strain into your cup. Add a few dashes of bitters. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -552,7 +552,7 @@ orchard_ember = Drink(
     section="Experiments",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={
                 "Bourbon": 2.0,
                 "Cider": 3.0,
@@ -561,7 +561,7 @@ orchard_ember = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice and garnish with some muddled fresh ginger. Enjoy!",
+            instruction="Add ice and some muddled fresh ginger. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -575,7 +575,7 @@ spicy_mezcalita = Drink(
     section="Experiments",
     stages=[
         DrinkStage(
-            instruction="Place the cup. (Salt the rim if desired)",
+            instruction="Place a mason jar.",
             pours={
                 "Mezcal": 2.0,
                 "Pineapple Juice": 2.0,
@@ -584,7 +584,7 @@ spicy_mezcalita = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Shake with ice and strain. Garnish with jalapenos. Enjoy!",
+            instruction="Shake with ice and strain into your cup. Salt rim first if desired. Garnish with jalapenos. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -599,19 +599,15 @@ stone_fence = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={
                 "Bourbon": 2.0,
+            "Cider": 4.0,
             },
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add some ice and place back the cup.",
-            pours={"Cider": 4.0},
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Add a few dashes of bitters. Enjoy!",
+            instruction="Add some ice and a few dashes of bitters. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -626,20 +622,16 @@ mezcal_mule = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={
                 "Mezcal": 2.0,
+                "Ginger Beer": 4.0,
                 "Lime": 0.5,
             },
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice and place back the cup.",
-            pours={"Ginger Beer": 4.0},
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Garnish with some fresh ginger. Enjoy!",
+            instruction="Add ice and garnish with some ginger. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -654,20 +646,16 @@ coffee_cider = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={
                 "Rum": 1.5,
                 "Cold Brew": 2.0,
+                "Cider": 2.0,
             },
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice and place back the cup.",
-            pours={"Cider": 2.0},
-            button_text="Continue",
-        ),
-        DrinkStage(
-            instruction="Garnish with a sprinkle of cinnamon. Enjoy!",
+            instruction="Add ice and sprinkle some cinnamon. Enjoy!"
             pours={},
             button_text="Back to menu",
         ),
@@ -683,7 +671,7 @@ rum_runner = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place a mason jar.",
             pours={
                 "Rum": 2.0,
                 "Pineapple Juice": 2.0,
@@ -693,7 +681,7 @@ rum_runner = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Shake with ice and strain into a glass. Garnish with a pineapple wedge. Enjoy!",
+            instruction="Shake with ice and strain into your cup. Garnish with a lime wedge. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -708,7 +696,7 @@ bitter_apple = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place your cup.",
             pours={
                 "Vermouth": 1.5,
                 "Cider": 2.0,
@@ -716,8 +704,8 @@ bitter_apple = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice and place back the cup.",
-            pours={"Ginger Beer": 2.0},
+            instruction="Add ice and place your cup back.",
+            pours={"Ginger Beer": 3.0},
             button_text="Continue",
         ),
         DrinkStage(
@@ -736,7 +724,7 @@ oaxacan_morning = Drink(
     section="Secret",
     stages=[
         DrinkStage(
-            instruction="Place the cup.",
+            instruction="Place a mason jar.",
             pours={
                 "Mezcal": 1.5,
                 "Cold Brew": 1.5,
@@ -745,7 +733,7 @@ oaxacan_morning = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Shake with ice and strain into a glass. Garnish with a pineapple wedge. Enjoy!",
+            instruction="Shake with ice and strain into your cup. Garnish with a pineapple wedge. Enjoy!",
             pours={},
             button_text="Back to menu",
         ),
@@ -767,7 +755,7 @@ ginger_fizz = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice, and place back the cup.",
+            instruction="Add ice, and place the cup back.",
             pours={
                 "Ginger Beer": 3.0,
             },
@@ -818,7 +806,7 @@ pomelo_sparkler = Drink(
             button_text="Start pouring",
         ),
         DrinkStage(
-            instruction="Add ice, and place back the cup.",
+            instruction="Add ice, and place the cup back.",
             pours={
                 "Grapefruit Soda": 5.0,
             },
