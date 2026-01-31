@@ -573,7 +573,7 @@ midnight_oil = Drink(
             instruction="Add a few dashes of bitters. Enjoy!",
             pours={},
             button_text="Back to menu",
-            imge_pre = "gifs/enjoy.gif",
+            img_pre = "gifs/enjoy.gif",
             img_during = "gifs/enjoy.gif",
             img_post = "gifs/enjoy.gif",
         ),
@@ -725,7 +725,7 @@ coffee_cider = Drink(
             img_post = "gifs/pour.gif",
         ),
         DrinkStage(
-            instruction="Add ice and sprinkle some cinnamon. Enjoy!"
+            instruction="Add ice and sprinkle some cinnamon. Enjoy!",
             pours={},
             button_text="Back to menu",
             img_pre = "gifs/enjoy.gif",
@@ -785,7 +785,7 @@ bitter_apple = Drink(
         DrinkStage(
             instruction="Place your cup.",
             pours={
-                "Vermouth": 1.5,
+                "Vermouth": 2.0,
                 "Cider": 2.0,
             },
             button_text="Start pouring",
@@ -840,7 +840,7 @@ oaxacan_morning = Drink(
             img_post = "gifs/shake.gif",
         ),
         DrinkStage(
-            instruction="Garnish with a pineapple wedge. Enjoy!",
+            instruction="Garnish with a lime wedge. Enjoy!",
             pours={},
             button_text="Back to menu",
             img_pre = "gifs/enjoy.gif",
@@ -932,9 +932,10 @@ pomelo_sparkler = Drink(
     section="Mocktails",
     stages=[
         DrinkStage(
-            instruction="Place the cup. Optionally salt the rim and add muddled ginger.",
+            instruction="Place the cup. Optionally salt the rim.",
             pours={
                 "Lime": 0.5,
+                "Grapefruit Soda": 5.0,
             },
             button_text="Start pouring",
             img_pre = "gifs/place_cup.gif",
@@ -942,17 +943,7 @@ pomelo_sparkler = Drink(
             img_post = "gifs/pour.gif",
         ),
         DrinkStage(
-            instruction="Add ice, and place the cup back.",
-            pours={
-                "Grapefruit Soda": 5.0,
-            },
-            button_text="Continue",
-            img_pre = "gifs/add_ice.gif",
-            img_during = "gifs/pour.gif",
-            img_post = "gifs/pour.gif",
-        ),
-        DrinkStage(
-            instruction="Garnish with a lime wedge. Enjoy!",
+            instruction="Add ice, muddled ginger, and a lime wedge. Enjoy!",
             pours={},
             button_text="Back to menu",
             img_pre = "gifs/enjoy.gif",

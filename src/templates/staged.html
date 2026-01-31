@@ -35,7 +35,7 @@
         release_button.setAttribute('aria-busy', "true");
         release_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
 
-        document.getElementById("stage-instruction").innerText = "Pouring... Please wait.";
+        document.getElementById("stage-instruction").style.opacity = 0.1;
 
     }
 
@@ -47,8 +47,7 @@
             document.getElementById("img_pre").hidden = true;
             document.getElementById("img_during").hidden = true;
             document.getElementById("img_post").hidden = false;
-            // hide the instructions
-            document.getElementById("stage-instruction").hidden = true;
+        document.getElementById("stage-instruction").style.opacity = 0.1;
     }
 
     function sleep_for_ms(ms) {
