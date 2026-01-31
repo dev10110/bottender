@@ -96,7 +96,7 @@ class BotTender:
     """
 
     def deque(self, uuid):
-        if len(self.drink_queue) >= 0:
+        if len(self.drink_queue) > 0:
             self.drink_queue.pop(0)
 
         return

@@ -40,9 +40,11 @@
             <!-- Robot reveal button -->
             <div id="robotReveal"
                  class="robot-reveal bop"
-                 role="button"
+                 role="button outline"
                  aria-pressed="false"
-                 title="Show secret menu">🤖</div>
+                 title="Show secret menu">
+                <img src="{{ url_for('static', filename='gifs/menu.gif') }}" alt="Robot" />
+            </div>
         </div>
     </div>
 {% endblock %}

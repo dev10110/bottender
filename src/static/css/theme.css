@@ -124,54 +124,24 @@ h5 {
 /* Robot reveal button - mostly hidden off-screen, it will "poke" up occasionally */
 .robot-reveal {
   position: fixed;
-  right: 16px;
-  bottom: -56px;
-  /* positioned completely off the bottom of the viewport */
-  width: 56px;
-  height: 56px;
+  right: 26px;
+  bottom: 26px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
+  /* background: rgba(0, 0, 0, 0.6); */
   color: #fff;
   font-size: 28px;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   z-index: 9999;
-  transform: translateY(0);
-  transition: transform 220ms ease, opacity 200ms ease;
   opacity: 0.95;
   user-select: none;
 }
 
-/* Poke animation: stay hidden most of the time, briefly translate up into view */
-@keyframes robot-poke {
-
-  0%,
-  77% {
-    transform: translateY(0);
-  }
-
-  80%,
-  90% {
-    transform: translateY(-72px);
-  }
-
-  93%,
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.robot-reveal.bop {
-  animation: robot-poke 5s ease-in-out infinite;
-}
-
-/* When the secret is revealed, keep the robot up */
-.robot-reveal.revealed {
-  transform: translateY(-72px);
-}
 
 /* Hidden secret section */
 #menu-section-Secret {

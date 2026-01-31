@@ -755,7 +755,7 @@ oaxacan_morning = Drink(
 ginger_fizz = Drink(
     id="ginger_fizz",
     name="Ginger Fizz",
-    description="Spiced apple cider, ginger beer.",
+    description="Spiced apple cider, ginger beer",
     section="Mocktails",
     stages=[
         DrinkStage(
