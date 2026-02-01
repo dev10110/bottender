@@ -1,45 +1,49 @@
 import os
-import uuid
 import random
+import uuid
 
 dummy_mode = False
-if os.environ.get("DUMMY_MODE") == "TRUE":
+print("DUMMY_MODE: ", os.environ.get("DUMMY_MODE"))
+if os.environ.get("DUMMY_MODE") == "true":
     print("SETTING DUMMY MODE TRUE")
-    dummy_mode=True
-    
+    dummy_mode = True
+
+print(f"using dummy_mode = {dummy_mode}")
 if not dummy_mode:
     import RPi.GPIO as GPIO
+
     GPIO.setwarnings(False)
+
 import time
 
-
-from motor_controller_pca9685 import MotorController
 from drinks_controller import DrinksController
+from motor_controller_pca9685 import MotorController
+
 
 class BotTender:
 
     def __init__(self):
 
         dispense_per_five_sec = [
-            0.71,
-            0.63,
-            0.64,
-            0.63,
-            0.786,
-            0.787,
-            0.80,
-            0.817,
-            0.6, 
-            0.565, 
-            0.58,
-            0.655
+            0.53, 
+            0.55, 
+            0.53, 
+            0.51, 
+            0.69, 
+            0.71, 
+            0.65, 
+            0.65, 
+            0.59, 
+            0.50, 
+            0.51, 
+            0.58
         ]
 
         ## TEMPORARY!
         # dispense_per_five_sec = [s*10 for s in dispense_per_five_sec]
-        
-        self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec];
-        
+
+        self.POUR_CONSTS = [5000 / s for s in dispense_per_five_sec]
+
         # if not dummy_mode:
         #     GPIO.setmode(GPIO.BCM)
 
@@ -48,31 +52,28 @@ class BotTender:
         #     GPIO.setup(self.switch, GPIO.IN)
 
         self.messages = []
-        
+
         # self.motors = [ # define each motor here
-        #     MotorController(21, 20), #M1 
+        #     MotorController(21, 20), #M1
         #     MotorController(16, 12), #M2
         #     MotorController(26, 19), #M3
         #     MotorController(11, 13), #M4
-        #     MotorController(23, 18), #M5 
+        #     MotorController(23, 18), #M5
         #     MotorController(24, 25), #M6
         #     MotorController(22, 27), #M7
         #     MotorController(10, 9) #M8
         # ]
         self.motors = [MotorController(i) for i in range(12)]
 
-        self.drinksController = DrinksController()    
+        self.drinksController = DrinksController()
 
         self.drink_queue = []
         self.drink_history_uuid = []
         self.drink_history_name = []
 
-
     def generate_uuid(self):
-        
         return uuid.uuid4().hex
 
-    
     def random_drink_id(self):
         menu = self.drinksController.get_menu()
         choice = random.choice(menu)
@@ -93,12 +94,12 @@ class BotTender:
     """ 
     remove first element from the drink queue
     """
+
     def deque(self, uuid):
-        if len(self.drink_queue) >= 0:
+        if len(self.drink_queue) > 0:
             self.drink_queue.pop(0)
 
         return
-
 
     def get_next_drink_name(self):
         if len(self.drink_queue) >= 1:
@@ -116,7 +117,6 @@ class BotTender:
         else:
             return None
 
-
     def check_switch(self):
         if dummy_mode:
             return True
@@ -130,7 +130,7 @@ class BotTender:
             print(" ** checking " + ing)
             if self.is_available(ing):
                 mot = self.which_motor(ing)
-                print(" ** "+ ing + " is at motor " + str(mot) + ". Dispensing")
+                print(" ** " + ing + " is at motor " + str(mot) + ". Dispensing")
                 self.dispense_oz(mot, d.ingredients[ing])
                 print(" ** Done dispensing")
                 poured = poured + ing + " "
@@ -140,14 +140,13 @@ class BotTender:
 
     def pour_parallel_next(self):
         if len(self.drink_queue) >= 1:
-            drink_id, uuid_id = self.drink_queue.pop(0) # also removes it from the list
+            drink_id, uuid_id = self.drink_queue.pop(0)  # also removes it from the list
             self.pour_parallel(drink_id)
-
 
     def pour_parallel(self, drink_id):
         d = self.find_drink(drink_id)
         poured = ""
-        
+
         plan = []
         for ing in d.ingredients.keys():
             if self.is_available(ing):
@@ -156,7 +155,7 @@ class BotTender:
                 t = self.POUR_CONSTS[mot] * oz
                 plan.append([mot, t, False])
                 poured = poured + ing + " "
-        
+
         maxT = max([p[1] for p in plan])
 
         print(plan)
@@ -166,13 +165,13 @@ class BotTender:
         for m in [p[0] for p in plan]:
             self.motors[m].forward()
             print(f"Starting motor {m}")
-        
+
         done = False
         while not done:
-            t = (time.time() - start)*1000
+            t = (time.time() - start) * 1000
             for i in range(len(plan)):
-                if not plan[i][2]: # if not done
-                    if t > plan[i][1]: # now is done
+                if not plan[i][2]:  # if not done
+                    if t > plan[i][1]:  # now is done
                         self.motors[plan[i][0]].stop()
                         print(f"*******************Stopping motor {plan[i][0]}")
                         plan[i][2] = True
@@ -181,35 +180,92 @@ class BotTender:
             print(t)
 
         return poured
-    
+
+    def pour_stage(self, drink_id, stage_index):
+        """Pour only the specified stage for a drink. Stage format expected:
+        {"instruction": "...", "pours": {"Vodka": 1.0, ...}}
+        """
+        d = self.find_drink(drink_id)
+        if not d:
+            print("Unknown drink for staged pour: ", drink_id)
+            return
+
+        stages = getattr(d, "stages", None)
+        if not stages or stage_index < 0 or stage_index >= len(stages):
+            print("No stage to pour for index", stage_index)
+            return
+
+        stage = stages[stage_index]
+        print(f"Stage: {stage}")
+        print(f"Stage pours: {stage.pours}")
+        pours = stage.pours
+
+        plan = []
+        for ing, oz in pours.items():
+            if self.is_available(ing):
+                mot = self.which_motor(ing)
+                t = self.POUR_CONSTS[mot] * oz
+                plan.append([mot, t, False])
+            else:
+                print(f"Ingredient {ing} not available for stage {stage_index}")
+
+        if not plan:
+            print("Nothing to pour for this stage")
+            return
+
+        start = time.time()
+        for m in [p[0] for p in plan]:
+            self.motors[m].forward()
+
+        done = False
+        while not done:
+            t = (time.time() - start) * 1000
+            print(f"Elapsed time: {t} ms")
+            for i in range(len(plan)):
+                if not plan[i][2]:
+                    if t > plan[i][1]:
+                        self.motors[plan[i][0]].stop()
+                        plan[i][2] = True
+            done = all([p[2] for p in plan])
+            # time.sleep(0.05)
+
+        print("Stage pour complete")
+
+        return
+
     def is_available(self, ing):
         return ing in self.drinksController.drinks
 
     def which_motor(self, ing):
         return self.drinksController.drinks.index(ing)
 
-
-
     def find_drink(self, drink_id):
         for d in self.all_drinks():
             if d.id == drink_id:
                 return d
 
-    
+    def all_sections(self):
+        return self.drinksController.get_sections()
+
     def all_drinks(self):
         return self.drinksController.get_menu()
+
+    def all_drinks_in_section(self, section):
+        return self.drinksController.get_section_menu(section)
 
     def set_drinks(self, drinks):
         return self.drinksController.set_drinks(drinks)
 
     def get_loaded_drink(self, motor_ind):
-        print(f"num_motors: {self.num_motors()}, num_ingred: {self.num_ingredients()}, num_active: {self.num_active_motors()}")
+        print(
+            f"num_motors: {self.num_motors()}, num_ingred: {self.num_ingredients()}, num_active: {self.num_active_motors()}"
+        )
         print(f"get_loaded_drink at motor_ind: {motor_ind}")
         return self.drinksController.drinks[motor_ind]
-    
+
     def all_ingredients(self):
         return self.drinksController.get_all_ingredients()
- 
+
     def num_motors(self):
         return len(self.motors)
 
@@ -218,14 +274,14 @@ class BotTender:
 
     def num_active_motors(self):
         return min(self.num_motors(), self.num_ingredients())
-        
+
     def validate(self, motor):
 
         # if not self.check_switch():
         #     print("SWITCH IS LOW")
         #     return False
 
-        if motor > len(self.motors)-1:
+        if motor > len(self.motors) - 1:
             print("WARNING: COMMANDING UNINITIALISED MOTOR")
             return False
 
@@ -240,7 +296,7 @@ class BotTender:
         if not self.validate(motor):
             return
         self.motors[motor].dispense(self.POUR_CONSTS[motor] * oz)
- 
+
     def forward(self, motor):
 
         if motor == -1:
@@ -251,7 +307,6 @@ class BotTender:
         if not self.validate(motor):
             return
         self.motors[motor].forward()
-
 
     def reverse(self, motor):
 
@@ -271,13 +326,11 @@ class BotTender:
                 motor.stop()
             return
 
-
         if not self.validate(motor):
             return
         self.motors[motor].stop()
-    
+
     def __del__(self):
         for motor in self.motors:
             motor.stop()
         GPIO.cleanup()
-        

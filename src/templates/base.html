@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html data-theme="light">
-<head>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/pico-bootstrap-grid.css')}}">
-    <!-- <link rel="stylesheet" href="https://raw.githubusercontent.com/picocss/examples/master/bootstrap-grid/css/pico-bootstrap-grid.css"> -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:wght@300" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet"> -->
-    <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BotTender</title>
-</head>
-
-<body>
-
-    <main class="container">
-      <a href="{{ url_for('main_page') }}"> 
-      <hgroup>
-        <h1>bottender</h1>
-        <h3>LD Bars</h3>
-      </hgroup>
-    </a>
-    
-    
-    
-    <div class="container">
-        {% for message in get_flashed_messages() %}
-        <mark>{{ message }}</mark>
-        {% endfor %} 
+    <head>
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/pico-bootstrap-grid.css') }}">
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/theme.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- font for house warming 2026 -->
+        <link href="https://fonts.googleapis.com/css2?family=Della+Respira&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playwrite+US+Trad:wght@100..400&display=swap"
+              rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BotTender</title>
+    </head>
+    <body>
+        <aside class="my-sidebar">
+            <img src="{{ url_for('static', filename='figs/bottender-sidebar.svg') }}"
+                 alt="Sidebar image">
+        </aside>
+        <main class="content container">
+            <a href="{{ url_for("main_page") }}">
+                <h1>BotTender</h1>
+            </a>
+            <div class="container">
+                {% for message in get_flashed_messages() %}<mark>{{ message }}</mark>{% endfor %}
+            </div>
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+            <nav>
+                <ul>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{{ url_for("main_page") }}">Menu</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for("show_drink_queue") }}">Queue</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for("custom_page") }}">Custom</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for("setup_page") }}">Setup</a>
+                    </li>
+                    <li>by Dev&Laura</li>
+                </ul>
+            </nav>
+        </main>
+        {% block script %}{% endblock %}
     </div>
-
-    <div id="content"> {% block content %}{% endblock %}</div>
-  
- <nav>
-  <ul>
-  </ul>
-  <ul>
-    <li><a href="{{ url_for('main_page') }}">Menu</a></li>
-    <li><a href="{{ url_for('show_drink_queue') }}">Queue</a></li>
-    <li><a href="{{ url_for('custom_page') }}">Custom</a></li>
-    <li><a href="{{ url_for('setup_page') }}">Setup</a></li>
-    <li>by Dev&Laura</li>
-  </ul>
-</nav>
-</main>
-{% block script %}{% endblock %}</div>
 </body>
 </html>

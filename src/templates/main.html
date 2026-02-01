@@ -1,56 +1,84 @@
 {% extends "base.html" %}
-{% block title %} Menu {% endblock %}
-
-
-
+{% block title %}Menu{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-    <!-- {% for d in bot.all_drinks() %} 
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">  
-        <article>
-            <h3>{{ d.name }}</h3>
-            <ul>
-            {% for i in d.ingredients.keys() %}
-                {% set avail =  bot.is_available(i) %}
-                <li> {{ i }}</li>
+    <div class="container">
+        <style></style>
+        <div class="row">
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;">
+                        <a href="/pour/{{ bot.random_drink_id().id }}/{{ uuid }}" role="button">I'm Feeling Lucky</a>
+                    </td>
+                </tr>
+            </table>
+            {% for sec in bot.all_sections() %}
+                <div style="margin-bottom: 2rem;">
+                    <div id="menu-section-{{ sec }}">
+                        <h2>{{ sec }}</h2>
+                        <table>
+                            {% for d in bot.all_drinks_in_section(sec) %}
+                                {% if d.hidden != True %}
+                                    <tr>
+                                        <td>
+                                            <h3>
+                                                {% if d.recommended %}•{% endif %}
+                                                {{ d.name }}
+                                            </h3>
+                                            <h4 class="drink-description">{{ d.description }}</h4>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <a href="/pour/{{ d.id }}/{{ uuid }}" role="button">Order</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
             {% endfor %}
-            </ul>
-            <footer>
-                <a href="/pour/{{d.id}}/{{uuid}}" role="button">Pour</a>
-            </footer>
-        </article>
+            <!-- Robot reveal button -->
+            <div id="robotReveal"
+                 class="robot-reveal bop"
+                 role="button outline"
+                 aria-pressed="false"
+                 title="Show secret menu">
+                <img src="{{ url_for('static', filename='gifs/menu.gif') }}" alt="Robot" />
+            </div>
+        </div>
     </div>
-    {% endfor %} -->
+{% endblock %}
+{% block script %}
+    <script>
+    (function () {
+        const btn = document.getElementById('robotReveal');
+        const secret = document.getElementById('menu-section-Secret');
+        if (!btn || !secret) return;
 
-    <table>
-        <tr>
-            <td>
-                <hgroup>
-                <h3>Suprise Me</h3>
-                <h4></h4>
-                </hgroup>
-              </td>
+        // restore previous state
+        try {
+            const visible = localStorage.getItem('secretVisible') === 'true';
+            if (visible) {
+                secret.classList.add('visible');
+                btn.classList.add('revealed');
+                btn.classList.remove('bop');
+            }
+        } catch (e) { }
 
-            <td style="text-align: right;"><a href="/pour/{{bot.random_drink_id().id}}/{{uuid}}" role="button">I'm Feeling Lucky</a></td>
-          </tr>
-        {% for d in bot.all_drinks() %}
-        {% if d.hidden != True %}
-        <tr>
-          <td>
-              <hgroup>
-              <h3>{% if d.recommended %} • {% endif %}{{ d.name }}</h3>
-              <h4>{{ ', '.join(d.ingredients.keys()) }}</h4>
-              </hgroup>
-            </td>
-          
-          <td style="text-align: right;"><a href="/pour/{{d.id}}/{{uuid}}" role="button">Order</a></td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-      </table>
-    
-</div>
-</div>
+        btn.addEventListener('click', function () {
+            const visible = secret.classList.toggle('visible');
+            if (visible) {
+                btn.classList.remove('bop');
+                btn.classList.add('revealed');
+                secret.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                btn.classList.remove('revealed');
+                // keep bop enabled when hidden so it will poke again later
+                if (!btn.classList.contains('bop')) btn.classList.add('bop');
+            }
+            try { localStorage.setItem('secretVisible', visible ? 'true' : 'false'); } catch (e) { }
+        });
 
+    })();
+    </script>
 {% endblock %}

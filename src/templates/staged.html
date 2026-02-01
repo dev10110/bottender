@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <section>
+            <h4>Preparing: {{ drink.name }}</h4>
+            <section>
+                <h3 id="stage-instruction">{{ stage_index + 1 }}. {{ stage.instruction }}</h3>
+                <div id = "stage-images">
+                <img id="img_pre"
+                     src="{{ url_for('static', filename=stage.img_pre) }}" />
+                <img id="img_during"
+                     hidden
+                     src="{{ url_for('static', filename=stage.img_during) }}" />
+                <img id="img_post"
+                     hidden
+                     src="{{ url_for('static', filename=stage.img_post) }}" />
+                </div>
+            </section>
+            <a id="release"
+               href="#"
+               onclick="release()"
+               class="btn btn-block btn-lg btn-primary"
+               role="button">{{ stage.button_text }}</a>
+        </section>
+    </div>
+    <script>
+    function set_drink_image_to_during() 
+    {
+        document.getElementById("img_pre").hidden = true;
+        document.getElementById("img_during").hidden = false;
+        document.getElementById("img_post").hidden = true;
+        var release_button = document.getElementById("release");
+        release_button.innerText = "Pouring...";
+        release_button.className += " outline";
+        release_button.setAttribute('aria-busy', "true");
+        release_button.setAttribute('onclick', "console.log('BUTTON DISABLED')");
+
+        document.getElementById("stage-instruction").style.opacity = 0.1;
+
+    }
+
+    function set_drink_image_to_post() {
+
+        var release_button = document.getElementById("release");
+            release_button.innerText = "Done. Loading next step...";
+            release_button.setAttribute('aria-busy', "false")
+            document.getElementById("img_pre").hidden = true;
+            document.getElementById("img_during").hidden = true;
+            document.getElementById("img_post").hidden = false;
+        document.getElementById("stage-instruction").style.opacity = 0.1;
+    }
+
+    function sleep_for_ms(ms) {
+            setTimeout(() => {
+                console.log("This runs after 2 seconds");
+            }, ms); 
+        }
+    function release() {
+        console.log("Releasing stage {{ stage_index }} for drink {{ uuid }}");
+
+        set_drink_image_to_during();
+
+        fetch(`${window.origin}/pour_stage/{{ uuid }}/{{ stage_index }}`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify("release"),
+            cache: "no-cache",
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        }).then(function (response) {
+            if (response.status !== 200) {
+                console.log("STATUS IS NOT 200")
+                return;
+            }
+
+            console.log("Received response for stage release:", response);
+
+            set_drink_image_to_post();
+
+            if (response.redirected) {
+                setTimeout(() => {
+                    console.log("Redirecting to:", response.url);
+                    window.location.href = response.url;
+                }, 500); // 0.5 second delay before redirect
+                return;
+            }
+        });
+    }   
+    </script>
+{% endblock %}

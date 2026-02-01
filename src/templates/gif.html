@@ -1,27 +1,18 @@
 {% extends "base.html" %}
-{% block title %} Menu {% endblock %}
-
-
-
+{% block title %}Menu{% endblock %}
 {% block content %}
-<div class="container">
-  <h1>test gif page</h1>
-  <img id="fillgif" hidden src="{{ url_for('static', filename='gifs/fill_gif_custom.gif') }}"/> 
-
-  <!-- <a href="{{ url_for('static', filename='')}}" -->
-
-    <p class="name">freeCodeCamp</p>
-
-    <button id="forward" type="button" onclick="forward();">Forward</button>
-
-</div>
-
+    <div class="container">
+        <h1>test gif page</h1>
+        <img id="fillgif"
+             hidden
+             src="{{ url_for('static', filename='gifs/fill_gif_custom.gif') }}" />
+        <!-- <a href="{{ url_for('static', filename='')}}" -->
+        <p class="name">freeCodeCamp</p>
+        <button id="forward" type="button" onclick="forward();">Forward</button>
+    </div>
 {% endblock %}
-
-
 {% block script %}
-<script>
-
+    <script>
 const button = document.querySelector(".forward");
 
 
@@ -66,5 +57,5 @@ function forward() {
 
 }
 
-</script>
+    </script>
 {% endblock %}
