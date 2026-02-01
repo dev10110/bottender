@@ -250,7 +250,7 @@ def drive_motor():
     if req["action"] == "stop":
         bot.stop(req["motor_id"])
     if req["action"] == "dispense":
-        bot.dispense(req["motor_id"], 1.0)
+        bot.dispense(req["motor_id"], 1000) # ms
 
     res = make_response(jsonify({"message": "message received"}), 200)
 
