@@ -79,7 +79,7 @@ def action(motor, action):
     if action == "stop":
         bot.stop(motor)
     if action == "dispense":
-        bot.dispense_oz(motor, 0.5)
+        bot.dispense_oz(motor, 1.0)
 
     # time.sleep(0.1)
     return redirect("/custom")
